@@ -12,8 +12,7 @@ import javafx.scene.image.ImageView;
 public class HelloController {
 
     // Character Selection
-    public ComboBox characterComboBox;
-    public ImageView characterImage;
+    public ListView characterImage;
     public Label characterDescription;
     public Button confirmCharacterButton;
 
@@ -54,9 +53,11 @@ public class HelloController {
 
     // General Status
     public Label gameStatusLabel;
+    private manager Manager =new manager();
 
     @FXML
     public void initialize() {
+        addchoice();
 
         // Initialize character choices here
         // Initialize attacks, weapons, and items here
@@ -72,6 +73,11 @@ public class HelloController {
 
     @FXML
     public void onConfirmCharacter(ActionEvent actionEvent) {
+        int selectedIndex= characterImage.getSelectionModel().getSelectedIndex();
+
+        Manager.setPlayer(Manager.getChoice().get(selectedIndex));
+
+
 
     }
 
@@ -88,5 +94,14 @@ public class HelloController {
     @FXML
     public void onConfirmDestination(ActionEvent actionEvent) {
 
+    }
+
+    public void addchoice(){
+        characterImage.getItems().clear();
+        for (charecter charecter : Manager.getChoice()){
+
+            characterImage.getItems().add(charecter.getName() +" attack "+charecter.getAttack()+" defense "+ charecter.getDefense());
+
+        }
     }
 }
