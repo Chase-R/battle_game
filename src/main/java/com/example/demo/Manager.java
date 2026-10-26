@@ -17,7 +17,7 @@ public class Manager {
     }
 
 
-
+//yes
     public Charecter getPlayer() {
         return player;
     }

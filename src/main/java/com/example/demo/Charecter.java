@@ -7,7 +7,7 @@ public class Charecter {
     private int health=100;
     private int attack;
     private int defense;
-    private int Tubers = 100;
+    private int tubers = 100;
     private Weapons weapon;
     private ArrayList<IndividualItemsOwned> items = new ArrayList<>();
 

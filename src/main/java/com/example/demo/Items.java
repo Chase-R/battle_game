@@ -2,14 +2,14 @@ package com.example.demo;
 
 public class Items {
 
-    private String name;
+    private String Name;
     private int attack;
     private int defense;
     private int price;
     private int heal;
 
     public Items(String name, int health, int attack, int defense, int price, int heal) {
-        this.name = name;
+        this.Name = name;
         this.attack = attack;
         this.defense = defense;
         this.price = price;
@@ -26,7 +26,7 @@ public class Items {
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public int getHeal() {

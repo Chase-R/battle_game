@@ -127,7 +127,7 @@ public class HelloController {
             setattack+=1;
             setdefense-=1;
         }
-
+//yes
 
         updateADlabel();
     }

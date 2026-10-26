@@ -1,16 +1,16 @@
 package com.example.demo;
 
 public class Weapons {
-    private int damage;
+    private int Damage;
 
     public Weapons(int damage){
-        this.damage = damage;
+        this.Damage = damage;
     }
 
 
 
 
     public int getDamage() {
-        return damage;
+        return Damage;
     }
 }

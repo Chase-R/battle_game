@@ -2,7 +2,7 @@ package com.example.demo;
 
 public class IndividualItemsOwned {
 
-    private Items item;
+    private Items Item;
     private int quant;
 
     public IndividualItemsOwned(Items item, int quant){

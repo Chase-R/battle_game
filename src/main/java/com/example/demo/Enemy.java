@@ -37,7 +37,5 @@ public class Enemy {
         return items;
     }
 
-    public void setItems(ArrayList<IndividualItemsOwned> items) {
-        this.items = items;
-    }
+
 }

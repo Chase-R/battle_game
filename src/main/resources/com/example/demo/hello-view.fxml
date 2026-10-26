@@ -18,7 +18,7 @@
         <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
 
-    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="⚔️ BATTLE ADVENTURE" />
+    <Label style="-fx-font-size: 23px; -fx-font-weight: bold;" text="⚔️ BATTLE ADVENTURE" />
 
     <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
 
