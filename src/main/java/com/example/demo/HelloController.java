@@ -3,10 +3,7 @@ package com.example.demo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 public class HelloController {
@@ -53,11 +50,20 @@ public class HelloController {
 
     // General Status
     public Label gameStatusLabel;
-    private manager Manager =new manager();
+    public Label attacklbl;
+    public Label defenselbl;
+    public TextField nametxt;
+    public TabPane tabPane;
+    public Label enemyname;
+    private Manager Manager =new Manager();
+
+    public int setattack=10;
+    public int setdefense = 10;
 
     @FXML
     public void initialize() {
-        addchoice();
+    updateADlabel();
+    addlocation();
 
         // Initialize character choices here
         // Initialize attacks, weapons, and items here
@@ -73,9 +79,12 @@ public class HelloController {
 
     @FXML
     public void onConfirmCharacter(ActionEvent actionEvent) {
-        int selectedIndex= characterImage.getSelectionModel().getSelectedIndex();
+       Manager.setPlayer(new Charecter(nametxt.getText(), setattack, setdefense));
 
-        Manager.setPlayer(Manager.getChoice().get(selectedIndex));
+        System.out.println(Manager.getPlayer().getName());
+        System.out.println(Manager.getPlayer().getAttack());
+        System.out.println(Manager.getPlayer().getDefense());
+
 
 
 
@@ -93,15 +102,60 @@ public class HelloController {
 
     @FXML
     public void onConfirmDestination(ActionEvent actionEvent) {
+        int selectedIndex= locationsListView.getSelectionModel().getSelectedIndex();
+        tabPane.getSelectionModel().select(1);
+        enemyHealthLabel.setText(String.valueOf(Manager.getEnemies().get(selectedIndex).getHealth()));
+
+        playerHealthLabel.setText(String.valueOf(Manager.getPlayer().getHealth()));
+        playerDescriptionLabel.setText("Attack: "+Manager.getPlayer().getAttack()+" Defense: "+Manager.getPlayer().getDefense());
+
+        enemyname.setText(Manager.getEnemies().get(selectedIndex).getName());
+        enemyDescriptionLabel.setText("Attack: "+Manager.getEnemies().get(selectedIndex).getAttack()+" Defense: "+Manager.getEnemies().get(selectedIndex).getDefense());
+    }
+
+//    public void addchoice(){
+//        characterImage.getItems().clear();
+//        for (Charecter charecter : Manager.getChoice()){
+//
+//            characterImage.getItems().add(charecter.getName() +" attack "+charecter.getAttack()+" defense "+ charecter.getDefense());
+//
+//        }
+//    }
+
+    public void AddAttack(ActionEvent actionEvent) {
+        if(setdefense > 0){
+            setattack+=1;
+            setdefense-=1;
+        }
+
+
+        updateADlabel();
+    }
+
+    public void addDefense(ActionEvent actionEvent) {
+        if(setattack > 0) {
+
+            setdefense += 1;
+            setattack -= 1;
+        }
+
+        updateADlabel();
 
     }
 
-    public void addchoice(){
-        characterImage.getItems().clear();
-        for (charecter charecter : Manager.getChoice()){
+    public void updateADlabel(){
+        attacklbl.setText("Attack = " + setattack);
+        defenselbl.setText("Defense = " + setdefense);
 
-            characterImage.getItems().add(charecter.getName() +" attack "+charecter.getAttack()+" defense "+ charecter.getDefense());
+    }
 
-        }
+    public void addlocation(){
+        locationsListView.getItems().clear();;
+        locationsListView.getItems().add("fight 1");
+        locationsListView.getItems().add("fight 2");
+        locationsListView.getItems().add("fight 3");
+        locationsListView.getItems().add("fight 4");
+        locationsListView.getItems().add("fight 5");
+
     }
 }

@@ -1,9 +1,9 @@
 package com.example.demo;
 
-public class weapons {
+public class Weapons {
     private int damage;
 
-    public weapons(int damage){
+    public Weapons(int damage){
         this.damage = damage;
     }
 

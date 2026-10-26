@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-        <?import javafx.geometry.Insets?>
-        <?import javafx.scene.control.Button?>
-        <?import javafx.scene.control.Label?>
-        <?import javafx.scene.control.ListView?>
-        <?import javafx.scene.control.Tab?>
-        <?import javafx.scene.control.TabPane?>
-        <?import javafx.scene.image.ImageView?>
-        <?import javafx.scene.layout.BorderPane?>
-        <?import javafx.scene.layout.HBox?>
-        <?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <VBox spacing="10" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
 
@@ -19,7 +20,7 @@
 
     <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="⚔️ BATTLE ADVENTURE" />
 
-    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+    <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
 
         <!-- CHARACTER SELECTION -->
         <Tab text="Character">
@@ -31,34 +32,14 @@
                 <center>
                     <VBox alignment="CENTER" spacing="12">
                         <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="🦸 Your Character" />
-
-                        <ListView fx:id="characterImage" prefHeight="250">
-                            <placeholder>
-                                <Label text="Character choices" />
-                            </placeholder>
-                        </ListView>
-
-                        <Label fx:id="characterDescription" maxWidth="280" text="Character description appears here." wrapText="true" />
-
-                        <Label text="Health: 100 | Attack: 10" />
+                  <Label fx:id="attacklbl" text="Attack" />
+                  <Label fx:id="defenselbl" text="defense" />
+                  <Button mnemonicParsing="false" onAction="#AddAttack" text="attack +1" />
+                  <Button mnemonicParsing="false" onAction="#addDefense" text="defense +1" />
+                  <TextField fx:id="nametxt" promptText="Enter your name" />
+                  <Button mnemonicParsing="false" onAction="#onConfirmCharacter" text="pick a charecter" />
                     </VBox>
                 </center>
-
-                <right>
-                    <VBox prefWidth="250" spacing="12">
-                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Choose Your Hero" />
-
-                        <Label text="Available Characters" />
-
-                        <ListView prefHeight="250">
-                            <placeholder>
-                                <Label text="Character choices" />
-                            </placeholder>
-                        </ListView>
-
-                        <Button fx:id="confirmCharacterButton" maxWidth="Infinity" text="Confirm Character" onAction="#onConfirmCharacter" />
-                    </VBox>
-                </right>
             </BorderPane>
         </Tab>
 
@@ -75,7 +56,7 @@
 
                         <HBox alignment="CENTER" spacing="20">
                             <VBox alignment="CENTER" spacing="10">
-                                <Label style="-fx-font-weight: bold;" text="🦸 Your Hero" />
+                                <Label style="-fx-font-weight: bold;" text="Your Hero" />
 
                                 <ImageView fx:id="playerImage" fitHeight="160" fitWidth="160" preserveRatio="true" />
 
@@ -86,7 +67,7 @@
                             <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="VS" />
 
                             <VBox alignment="CENTER" spacing="10">
-                                <Label style="-fx-font-weight: bold;" text="👹 Enemy" />
+                                <Label fx:id="enemyname" style="-fx-font-weight: bold;" text="Enemy" />
 
                                 <ImageView fx:id="enemyImage" fitHeight="160" fitWidth="160" preserveRatio="true" />
 
@@ -95,7 +76,7 @@
                             </VBox>
                         </HBox>
 
-                        <Button fx:id="confirmActionButton" prefHeight="40" prefWidth="200" text="Confirm Action" onAction="#onConfirmAction" />
+                        <Button fx:id="confirmActionButton" onAction="#onConfirmAction" prefHeight="40" prefWidth="200" text="Confirm Action" />
                     </VBox>
                 </center>
 
@@ -170,7 +151,7 @@
                             </placeholder>
                         </ListView>
 
-                        <Button fx:id="confirmPurchaseButton" maxWidth="Infinity" text="Confirm Purchase" onAction="#onConfirmPurchase" />
+                        <Button fx:id="confirmPurchaseButton" maxWidth="Infinity" onAction="#onConfirmPurchase" text="Confirm Purchase" />
 
                         <Label text="Your Inventory" />
 
@@ -215,7 +196,7 @@
 
                         <Label fx:id="locationDetailsLabel" text="Select a location to see its description." wrapText="true" />
 
-                        <Button fx:id="confirmDestinationButton" maxWidth="Infinity" text="Confirm Destination" onAction="#onConfirmDestination" />
+                        <Button fx:id="confirmDestinationButton" maxWidth="Infinity" onAction="#onConfirmDestination" text="Confirm Destination" />
 
                         <Label text="Visited Locations" />
 
@@ -230,7 +211,5 @@
         </Tab>
 
     </TabPane>
-
-    <Label fx:id="gameStatusLabel" text="✨ Welcome, adventurer!" />
 
 </VBox>

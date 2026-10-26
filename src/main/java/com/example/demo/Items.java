@@ -1,6 +1,6 @@
 package com.example.demo;
 
-public class items {
+public class Items {
 
     private String name;
     private int attack;
@@ -8,7 +8,7 @@ public class items {
     private int price;
     private int heal;
 
-    public items(String name, int health, int attack, int defense, int price, int heal) {
+    public Items(String name, int health, int attack, int defense, int price, int heal) {
         this.name = name;
         this.attack = attack;
         this.defense = defense;

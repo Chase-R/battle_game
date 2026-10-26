@@ -2,22 +2,20 @@ package com.example.demo;
 
 import java.util.ArrayList;
 
-public class charecter {
+public class Enemy {
     private String name;
-    private int health=100;
+    private int health;
     private int attack;
     private int defense;
-    private int Tubers = 100;
-    private weapons weapon;
-    private ArrayList<individualItemsOwned> items = new ArrayList<>();
+    private ArrayList<IndividualItemsOwned> items = new ArrayList<>();
 
-
-    public charecter(String name, int attack, int defense){
+    public Enemy(String name, int attack, int defense, int health){
         this.attack=attack;
         this.defense = defense;
         this.name = name;
-
+        this.health = health;
     }
+
 
     public String getName() {
         return name;
@@ -35,15 +33,11 @@ public class charecter {
         return health;
     }
 
-    public int getTubers() {
-        return Tubers;
-    }
-
-    public ArrayList<individualItemsOwned> getItems() {
+    public ArrayList<IndividualItemsOwned> getItems() {
         return items;
     }
 
-    public weapons getWeapon() {
-        return weapon;
+    public void setItems(ArrayList<IndividualItemsOwned> items) {
+        this.items = items;
     }
 }
