@@ -24,8 +24,6 @@ public class HelloController {
     public Label enemyDescriptionLabel;
 
     // Battle Lists
-    public ListView attacksListView;
-    public ListView weaponsListView;
     public ListView battleItemsListView;
     public ListView battleLogListView;
 
@@ -59,10 +57,11 @@ public class HelloController {
 
     public int setattack=10;
     public int setdefense = 10;
+    public Enemy selectedEnemy;
 
     @FXML
     public void initialize() {
-    updateADlabel();
+    updatecharecterscreen();
     addlocation();
 
         // Initialize character choices here
@@ -84,6 +83,8 @@ public class HelloController {
         System.out.println(Manager.getPlayer().getName());
         System.out.println(Manager.getPlayer().getAttack());
         System.out.println(Manager.getPlayer().getDefense());
+        tabPane.getSelectionModel().select(3);
+
 
 
 
@@ -104,13 +105,8 @@ public class HelloController {
     public void onConfirmDestination(ActionEvent actionEvent) {
         int selectedIndex= locationsListView.getSelectionModel().getSelectedIndex();
         tabPane.getSelectionModel().select(1);
-        enemyHealthLabel.setText(String.valueOf(Manager.getEnemies().get(selectedIndex).getHealth()));
-
-        playerHealthLabel.setText(String.valueOf(Manager.getPlayer().getHealth()));
-        playerDescriptionLabel.setText("Attack: "+Manager.getPlayer().getAttack()+" Defense: "+Manager.getPlayer().getDefense());
-
-        enemyname.setText(Manager.getEnemies().get(selectedIndex).getName());
-        enemyDescriptionLabel.setText("Attack: "+Manager.getEnemies().get(selectedIndex).getAttack()+" Defense: "+Manager.getEnemies().get(selectedIndex).getDefense());
+        selectedEnemy = Manager.getEnemies().get(selectedIndex);
+        updateAttackscreen();
     }
 
 //    public void addchoice(){
@@ -129,7 +125,7 @@ public class HelloController {
         }
 //yes
 
-        updateADlabel();
+        updatecharecterscreen();
     }
 
     public void addDefense(ActionEvent actionEvent) {
@@ -139,11 +135,11 @@ public class HelloController {
             setattack -= 1;
         }
 
-        updateADlabel();
+        updatecharecterscreen();
 
     }
 
-    public void updateADlabel(){
+    public void updatecharecterscreen(){
         attacklbl.setText("Attack = " + setattack);
         defenselbl.setText("Defense = " + setdefense);
 
@@ -157,5 +153,21 @@ public class HelloController {
         locationsListView.getItems().add("fight 4");
         locationsListView.getItems().add("fight 5");
 
+    }
+
+    public void handleAttack(ActionEvent actionEvent) {
+        Manager.attack(selectedEnemy);
+        updateAttackscreen();
+    }
+
+
+    public void updateAttackscreen(){
+        enemyHealthLabel.setText(String.valueOf(selectedEnemy.getHealth()));
+
+        playerHealthLabel.setText(String.valueOf(Manager.getPlayer().getHealth()));
+        playerDescriptionLabel.setText("Attack: "+Manager.getPlayer().getAttack()+" Defense: "+Manager.getPlayer().getDefense());
+
+        enemyname.setText(selectedEnemy.getName());
+        enemyDescriptionLabel.setText("Attack: "+selectedEnemy.getAttack()+" Defense: "+selectedEnemy.getDefense());
     }
 }

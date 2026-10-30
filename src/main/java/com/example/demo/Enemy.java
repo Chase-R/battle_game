@@ -15,6 +15,9 @@ public class Enemy {
         this.name = name;
         this.health = health;
     }
+    public void takeDamage(int damage){
+        health-=damage;
+    }
 
 
     public String getName() {

@@ -16,6 +16,20 @@ public class Manager {
 
 
     }
+    public void attack(Enemy opponent){
+        for (Enemy enemy:enemies){
+            if (enemy == opponent){
+                if (weapons== null){
+                    enemy.takeDamage(player.getAttack()-enemy.getDefense());
+
+                }else{
+                    enemy.takeDamage(player.getAttack()+ weapons.getDamage()-enemy.getDefense());
+
+                }
+            }
+        }
+
+    }
 
 
 //yes

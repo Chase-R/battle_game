@@ -83,20 +83,9 @@
                 <right>
                     <VBox prefWidth="220" spacing="7">
                         <Label style="-fx-font-weight: bold;" text="⚔️ Attacks" />
-
-                        <ListView fx:id="attacksListView" prefHeight="85">
-                            <placeholder>
-                                <Label text="Available attacks" />
-                            </placeholder>
-                        </ListView>
+                  <Button mnemonicParsing="false" onAction="#handleAttack" text="Attack" />
 
                         <Label style="-fx-font-weight: bold;" text="🗡️ Weapons" />
-
-                        <ListView fx:id="weaponsListView" prefHeight="75">
-                            <placeholder>
-                                <Label text="Available weapons" />
-                            </placeholder>
-                        </ListView>
 
                         <Label style="-fx-font-weight: bold;" text="🎒 Items" />
 
