@@ -1,8 +1,8 @@
 package com.example.demo;
-
+//github
 public class IndividualItemsOwned {
 
-    private Items Item;
+    private Items item;
     private int quant;
 
     public IndividualItemsOwned(Items item, int quant){

@@ -36,7 +36,7 @@ public class Charecter {
     }
 
     public int getTubers() {
-        return Tubers;
+        return tubers;
     }
 
     public ArrayList<IndividualItemsOwned> getItems() {
