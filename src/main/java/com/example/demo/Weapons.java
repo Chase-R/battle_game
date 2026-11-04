@@ -1,9 +1,13 @@
 package com.example.demo;
 
 public class Weapons {
+    private String name;
+    private int price;
     private int damage;
 
-    public Weapons(int damage){
+    public Weapons(String name, int price, int damage){
+        this.name = name;
+        this.price = price;
         this.damage = damage;
     }
 
@@ -13,4 +17,6 @@ public class Weapons {
     public int getDamage() {
         return damage;
     }
+    public int getPrice() {return price;}
+    public String getName() {return name;}
 }

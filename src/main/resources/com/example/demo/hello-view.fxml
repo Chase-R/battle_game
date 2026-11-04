@@ -135,11 +135,16 @@
 
                         <Label fx:id="shopGoldLabel" text="💰 Gold: 100" />
 
-                        <ListView fx:id="shopItemsListView" prefHeight="300">
+                        <ListView fx:id="shopItemsListView" prefHeight="109.0" prefWidth="260.0">
                             <placeholder>
                                 <Label text="Available items" />
                             </placeholder>
                         </ListView>
+                  <ListView fx:id="shopItemsListView1" prefHeight="109.0" prefWidth="260.0">
+                     <placeholder>
+                        <Label fx:id="weaponslst" text="Available weapons" />
+                     </placeholder>
+                  </ListView>
 
                         <Button fx:id="confirmPurchaseButton" maxWidth="Infinity" onAction="#onConfirmPurchase" text="Confirm Purchase" />
 

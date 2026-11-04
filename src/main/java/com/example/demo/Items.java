@@ -7,13 +7,18 @@ public class Items {
     private int defense;
     private int price;
     private int heal;
+    private int uses = 3;
 
-    public Items(String name, int health, int attack, int defense, int price, int heal) {
+    public Items(String name, int attack, int defense, int price, int heal) {
         this.name = name;
         this.attack = attack;
         this.defense = defense;
         this.price = price;
         this.heal = heal;
+    }
+
+    public String getall(){
+        return name + " attack: "+attack+" defense: "+defense+" price: "+price+" heal: "+heal;
     }
 
 
@@ -37,8 +42,12 @@ public class Items {
         return price;
     }
 
-    public void setAttack(int attack) {
-        this.attack = attack;
+
+    public int getUses() {
+        return uses;
     }
 
+    public void Use() {
+        uses--;
+    }
 }

@@ -54,6 +54,8 @@ public class HelloController {
     public TabPane tabPane;
     public Label enemyname;
     public Button BTMbtn;
+    public Label weaponslst;
+    public ListView shopItemsListView1;
     private Manager Manager =new Manager();
 
     public int setattack=10;
@@ -111,6 +113,7 @@ public class HelloController {
             updateAttackscreen();
         }else if(selectedIndex == 5){
             tabPane.getSelectionModel().select(2);
+            updateShopScreen();
         }
 
     }
@@ -125,7 +128,7 @@ public class HelloController {
 //    }
 
     public void AddAttack(ActionEvent actionEvent) {
-        if(setdefense > 1){
+        if(setdefense >5){
             setattack+=1;
             setdefense-=1;
         }
@@ -135,7 +138,7 @@ public class HelloController {
     }
 
     public void addDefense(ActionEvent actionEvent) {
-        if(setattack > 1) {
+        if(setattack > 5) {
 
             setdefense += 1;
             setattack -= 1;
@@ -172,25 +175,25 @@ public class HelloController {
 
     }
     public void iswon(int won){
-        if (won==1){
-            enemyHealthLabel.setText(Manager.getPlayer().getName() + "won");
+        if (won==2){
+            enemyHealthLabel.setText(Manager.getPlayer().getName() + " won");
 
-            playerHealthLabel.setText(Manager.getPlayer().getName() + "won");
-            playerDescriptionLabel.setText(Manager.getPlayer().getName() + "won");
+            playerHealthLabel.setText(Manager.getPlayer().getName() + " won");
+            playerDescriptionLabel.setText(Manager.getPlayer().getName() + " won");
 
-            enemyname.setText(Manager.getPlayer().getName() + "won");
-            enemyDescriptionLabel.setText(Manager.getPlayer().getName() + "won");
-            Manager.getPlayer().addtuber(10);
+            enemyname.setText(Manager.getPlayer().getName() + " won");
+            enemyDescriptionLabel.setText(Manager.getPlayer().getName() + " won");
+            Manager.getPlayer().addtuber(Manager.getEnemies().indexOf(selectedEnemy)*10);
 
             BTMbtn.setVisible(true);
-        }else if(won==2){
-            enemyHealthLabel.setText(selectedEnemy.getName() + "won");
+        }else if(won==1){
+            enemyHealthLabel.setText(selectedEnemy.getName() + " won");
 
-            playerHealthLabel.setText(selectedEnemy.getName() + "won");
-            playerDescriptionLabel.setText(selectedEnemy.getName() + "won");
+            playerHealthLabel.setText(selectedEnemy.getName() + " won");
+            playerDescriptionLabel.setText(selectedEnemy.getName() + " won");
 
-            enemyname.setText(selectedEnemy.getName() + "won");
-            enemyDescriptionLabel.setText(selectedEnemy.getName() + "won");
+            enemyname.setText(selectedEnemy.getName() + " won");
+            enemyDescriptionLabel.setText(selectedEnemy.getName() + " won");
         }else if (won == 3){
             updateAttackscreen();
         }
@@ -210,6 +213,7 @@ public class HelloController {
     public void backToMap(ActionEvent actionEvent) {
         tabPane.getSelectionModel().select(3);
         BTMbtn.setVisible(false);
+        updateAttackscreen();
 
     }
 
@@ -217,7 +221,7 @@ public class HelloController {
         shopItemsListView.getItems().clear();
         shopGoldLabel.setText("tubers = "+ Manager.getPlayer().getTubers());
         for (Items items: Manager.getStoreitems()){
-            shopItemsListView.getItems().add(items.getName());
+            shopItemsListView.getItems().add(items.getall());
         }
 
 

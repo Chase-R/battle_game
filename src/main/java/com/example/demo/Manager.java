@@ -15,6 +15,13 @@ public class Manager {
 
     public Manager(){
         enemies.add(new Enemy("enemy 1",randnum(1,5),randnum(1,5),randnum(10,20)));
+        storeitems.add(new Items("item 1",randnum(1,5),randnum(1,5),randnum(1,5),randnum(1,5)));
+        storeitems.add(new Items("item 1",randnum(10,15),randnum(10,15),randnum(10,15),randnum(10,15)));
+        storeitems.add(new Items("item 1",randnum(20,25),randnum(20,25),randnum(20,25),randnum(20,25)));
+        storeweapons.add(new Weapons("weapon 1",randnum(1,5),randnum(1,5)));
+        storeweapons.add(new Weapons("weapon 1",randnum(10,15),randnum(10,15)));
+        storeweapons.add(new Weapons("weapon 1",randnum(20,25),randnum(20,25)));
+
 
 
     }
@@ -22,17 +29,24 @@ public class Manager {
     public void enemyattack(Enemy opponent){
         for (Enemy enemy:enemies){
             if (enemy == opponent){
-                player.takedamage(opponent.getAttack()- player.getDefense());
+                if(opponent.getAttack()- player.getDefense()>0){
+                    player.takedamage(opponent.getAttack()- player.getDefense());
+                }
             }
         }
     }
     public void attack(Enemy opponent){
 
         if (weapons== null){
-            opponent.takeDamage(player.getAttack()-opponent.getDefense());
+            if(player.getAttack()-opponent.getDefense()>0){
+                opponent.takeDamage(player.getAttack()-opponent.getDefense());
+
+            }
 
         }else{
-            opponent.takeDamage(player.getAttack()+ weapons.getDamage()-opponent.getDefense());
+            if(player.getAttack()+ weapons.getDamage()-opponent.getDefense()>0){
+                opponent.takeDamage(player.getAttack()+ weapons.getDamage()-opponent.getDefense());
+            }
 
         }
 
@@ -66,11 +80,11 @@ public class Manager {
     }
 
     public int checkifwon(Enemy opponent){
-        if(player.getHealth() == 0){
+        if(player.getHealth() <= 0){
             return 1;
         }
 
-        if (opponent.getHealth() == 0){
+        if (opponent.getHealth() <= 0){
             return 2;
         }
 
