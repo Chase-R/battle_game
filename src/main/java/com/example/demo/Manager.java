@@ -8,6 +8,8 @@ public class Manager {
     private ArrayList<Enemy> enemies = new ArrayList<>();
     private Weapons weapons;
     private Charecter player;
+    private ArrayList<Weapons> storeweapons = new ArrayList<>();
+    private ArrayList<Items> storeitems = new ArrayList<>();
 
 
 
@@ -16,20 +18,27 @@ public class Manager {
 
 
     }
-    public void attack(Enemy opponent){
+
+    public void enemyattack(Enemy opponent){
         for (Enemy enemy:enemies){
             if (enemy == opponent){
-                if (weapons== null){
-                    enemy.takeDamage(player.getAttack()-enemy.getDefense());
-
-                }else{
-                    enemy.takeDamage(player.getAttack()+ weapons.getDamage()-enemy.getDefense());
-
-                }
+                player.takedamage(opponent.getAttack()- player.getDefense());
             }
         }
+    }
+    public void attack(Enemy opponent){
+
+        if (weapons== null){
+            opponent.takeDamage(player.getAttack()-opponent.getDefense());
+
+        }else{
+            opponent.takeDamage(player.getAttack()+ weapons.getDamage()-opponent.getDefense());
+
+        }
+
 
     }
+
 
 
 //yes
@@ -54,5 +63,33 @@ public class Manager {
     public int randnum(int min, int max){
         int randomInt = (int)(Math.random() * (max - min + 1)) + min;
         return randomInt;
+    }
+
+    public int checkifwon(Enemy opponent){
+        if(player.getHealth() == 0){
+            return 1;
+        }
+
+        if (opponent.getHealth() == 0){
+            return 2;
+        }
+
+        return 3;
+    }
+
+    public ArrayList<Items> getStoreitems() {
+        return storeitems;
+    }
+
+    public void setStoreitems(ArrayList<Items> storeitems) {
+        this.storeitems = storeitems;
+    }
+
+    public ArrayList<Weapons> getStoreweapons() {
+        return storeweapons;
+    }
+
+    public void setStoreweapons(ArrayList<Weapons> storeweapons) {
+        this.storeweapons = storeweapons;
     }
 }

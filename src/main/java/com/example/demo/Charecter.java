@@ -7,7 +7,7 @@ public class Charecter {
     private int health=100;
     private int attack;
     private int defense;
-    private int tubers = 100;
+    private int tubers = 0;
     private Weapons weapon;
     private ArrayList<IndividualItemsOwned> items = new ArrayList<>();
 
@@ -38,9 +38,19 @@ public class Charecter {
     public int getTubers() {
         return tubers;
     }
+    public void addtuber(int num){
+        tubers += num;
+    }
+    public void subtuber(int num){
+        tubers -= num;
+    }
 
     public ArrayList<IndividualItemsOwned> getItems() {
         return items;
+    }
+
+    public void takedamage(int damage){
+        health-=damage;
     }
 
     public Weapons getWeapon() {
