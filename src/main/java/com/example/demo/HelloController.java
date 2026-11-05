@@ -12,7 +12,12 @@ public class HelloController {
     public ListView characterImage;
     public Label characterDescription;
     public Button confirmCharacterButton;
-
+    public Tab ctab;
+    public Tab btab;
+    public Tab stab;
+    public Tab mtab;
+    public Tab ltap;
+    int reward;
     // Battle: Player
     public ImageView playerImage;
     public Label playerHealthLabel;
@@ -64,11 +69,15 @@ public class HelloController {
     public Enemy selectedEnemy;
     public boolean beenshop = false;
 
+    public Weapons selectedweapon;
+
     @FXML
     public void initialize() {
     updatecharecterscreen();
     addlocation();
 
+
+        tabPane.getTabs().remove(ltap);
         // Initialize character choices here
         // Initialize attacks, weapons, and items here
         // Initialize shop inventory and map locations here
@@ -118,6 +127,11 @@ public class HelloController {
             tabPane.getSelectionModel().select(1);
             selectedEnemy = Manager.getEnemies().get(selectedIndex);
             updateAttackscreen();
+            reward = 10
+                    + (selectedEnemy.getHealth() * 2)
+                    + (selectedEnemy.getAttack() * 2)
+                    + selectedEnemy.getDefense()
+                    + randnum(0, 10);
         }else if(selectedIndex == 8){
             tabPane.getSelectionModel().select(2);
             updateShopScreen();
@@ -163,11 +177,14 @@ public class HelloController {
 
     public void addlocation(){
         locationsListView.getItems().clear();;
-        locationsListView.getItems().add("fight 1");
-        locationsListView.getItems().add("fight 2");
-        locationsListView.getItems().add("fight 3");
-        locationsListView.getItems().add("fight 4");
-        locationsListView.getItems().add("fight 5");
+        locationsListView.getItems().add("Tunnel Scout");
+        locationsListView.getItems().add("Tuber Thief");
+        locationsListView.getItems().add("Colony Defender");
+        locationsListView.getItems().add("Incisor Warrior");
+        locationsListView.getItems().add("Tunnel Brute");
+        locationsListView.getItems().add("Royal Guard");
+        locationsListView.getItems().add("Queen's Champion");
+        locationsListView.getItems().add("The Queen");
         locationsListView.getItems().add("shop");
 
 
@@ -190,16 +207,13 @@ public class HelloController {
 
             enemyname.setText(Manager.getPlayer().getName() + " won");
             enemyDescriptionLabel.setText(Manager.getPlayer().getName() + " won");
-            int reward = 10
-                    + (selectedEnemy.getHealth() * 2)
-                    + (selectedEnemy.getAttack() * 2)
-                    + selectedEnemy.getDefense()
-                    + randnum(0, 10);
+
 
             Manager.getPlayer().addtuber(reward);
 
             System.out.println("You earned " + reward + " tubers!");
-            System.out.println("Total tubers: " + Manager.getPlayer().getTubers());            System.out.println(Manager.getPlayer().getTubers());
+            System.out.println("Total tubers: " + Manager.getPlayer().getTubers());
+            System.out.println(Manager.getPlayer().getTubers());
             BTMbtn.setVisible(true);
         }else if(won==1){
             enemyHealthLabel.setText(selectedEnemy.getName() + " won");
@@ -209,6 +223,9 @@ public class HelloController {
 
             enemyname.setText(selectedEnemy.getName() + " won");
             enemyDescriptionLabel.setText(selectedEnemy.getName() + " won");
+            tabPane.getTabs().clear();
+            tabPane.getTabs().add(ltap);
+            tabPane.getSelectionModel().select(ltap);
         }else if (won == 3){
             updateAttackscreen();
         }
@@ -263,6 +280,11 @@ public class HelloController {
     }
 
     public void onConfirmPurchasew(ActionEvent actionEvent) {
+        int selectedIndex= shopItemsListView1.getSelectionModel().getSelectedIndex();
+
+        Weapons slectedpurchse = Manager.getStoreweapons().get(selectedIndex);
+        Manager.itembuyw(slectedpurchse);
+        updateShopScreen();
     }
 
     public int randnum(int min, int max){

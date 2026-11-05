@@ -8,9 +8,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox spacing="10" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
 
@@ -23,7 +25,7 @@
     <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
 
         <!-- CHARACTER SELECTION -->
-        <Tab text="Character">
+        <Tab fx:id="ctab" text="Character">
             <BorderPane>
                 <padding>
                     <Insets bottom="15" left="15" right="15" top="15" />
@@ -44,7 +46,7 @@
         </Tab>
 
         <!-- BATTLE -->
-        <Tab text="Battle">
+        <Tab fx:id="btab" text="Battle">
             <BorderPane>
                 <padding>
                     <Insets bottom="12" left="12" right="12" top="12" />
@@ -109,7 +111,7 @@
         </Tab>
 
         <!-- SHOP -->
-        <Tab text="Shop">
+        <Tab fx:id="stab" text="Shop">
             <BorderPane>
                 <padding>
                     <Insets bottom="15" left="15" right="15" top="15" />
@@ -162,7 +164,7 @@
         </Tab>
 
         <!-- MAP -->
-        <Tab text="Map">
+        <Tab fx:id="mtab" text="Map">
             <BorderPane>
                 <padding>
                     <Insets bottom="15" left="15" right="15" top="15" />
@@ -205,6 +207,19 @@
                 </right>
             </BorderPane>
         </Tab>
+      <Tab fx:id="ltap" text="you lose">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="123.0" layoutY="236.0" text="You Lost!!!" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="96.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
 
     </TabPane>
 
