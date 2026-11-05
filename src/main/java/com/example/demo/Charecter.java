@@ -56,4 +56,61 @@ public class Charecter {
     public Weapons getWeapon() {
         return weapon;
     }
+
+
+    public String itembuy(Items selectedItem){
+        if (selectedItem.getPrice() <= tubers){
+            tubers -= selectedItem.getPrice();
+            IndividualItemsOwned temp = ownItem(selectedItem);
+
+            if (temp == null) {
+                items.add(new IndividualItemsOwned(selectedItem, 1));
+                return "bought a new item" + items.getLast().getItem().getName();
+
+            }else {
+                temp.addUses(3);
+                return "bought more of a item" + temp.getUses();
+            }
+
+        }else {
+            return "no money";
+
+
+        }
+
+    }
+    public String itembuyw(Weapons selectedItem){
+        if (selectedItem.getPrice() <= tubers){
+            tubers -= selectedItem.getPrice();
+            weapon = selectedItem;
+            return "bought";
+
+
+
+        }else {
+            return "no money";
+
+
+        }
+
+    }
+
+    public String weaponbuy(Weapons selectedweapon){
+        if (selectedweapon.getPrice() <= tubers){
+            weapon = selectedweapon;
+            return "sucess";
+        }
+        return "fail";
+
+    }
+    public IndividualItemsOwned ownItem(Items itemsbuy){
+        IndividualItemsOwned temp = null;
+
+        for (int i=0; i <items.size(); i++ ) {
+            if (items.get(i).getItem().equals(itemsbuy)) {
+                temp = items.get(i);
+            }
+        }
+        return temp;
+    }
 }

@@ -140,13 +140,14 @@
                                 <Label text="Available items" />
                             </placeholder>
                         </ListView>
+
+                        <Button fx:id="confirmPurchaseButton" maxWidth="Infinity" onAction="#onConfirmPurchase" text="Confirm Item Purchase" />
                   <ListView fx:id="shopItemsListView1" prefHeight="109.0" prefWidth="260.0">
                      <placeholder>
                         <Label fx:id="weaponslst" text="Available weapons" />
                      </placeholder>
                   </ListView>
-
-                        <Button fx:id="confirmPurchaseButton" maxWidth="Infinity" onAction="#onConfirmPurchase" text="Confirm Purchase" />
+                  <Button fx:id="confirmPurchaseButton1" maxWidth="Infinity" onAction="#onConfirmPurchasew" text="Confirm Weapon Purchase" />
 
                         <Label text="Your Inventory" />
 

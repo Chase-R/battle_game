@@ -18,6 +18,9 @@ public class Items {
     }
 
     public String getall(){
+        return name + " attack: "+attack+" defense: "+defense+" heal: "+heal;
+    }
+    public String getwithpiceall(){
         return name + " attack: "+attack+" defense: "+defense+" price: "+price+" heal: "+heal;
     }
 

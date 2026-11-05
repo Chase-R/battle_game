@@ -19,4 +19,10 @@ public class Weapons {
     }
     public int getPrice() {return price;}
     public String getName() {return name;}
+    public String getallprice(){
+        return "name: " + name + " damage: " + damage + " price: " + price;
+    }
+    public String getall() {
+        return "name: " + name + " damage: " + damage;
+    }
 }

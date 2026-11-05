@@ -56,11 +56,13 @@ public class HelloController {
     public Button BTMbtn;
     public Label weaponslst;
     public ListView shopItemsListView1;
+    public Button confirmPurchaseButton1;
     private Manager Manager =new Manager();
 
     public int setattack=10;
-    public int setdefense = 10;
+    public int setdefense = 0;
     public Enemy selectedEnemy;
+    public boolean beenshop = false;
 
     @FXML
     public void initialize() {
@@ -101,17 +103,22 @@ public class HelloController {
 
     @FXML
     public void onConfirmPurchase(ActionEvent actionEvent) {
+        int selectedIndex= shopItemsListView.getSelectionModel().getSelectedIndex();
+
+        Items slectedpurchse = Manager.getStoreitems().get(selectedIndex);
+        Manager.itembuy(slectedpurchse);
+        updateShopScreen();
 
     }
 
     @FXML
     public void onConfirmDestination(ActionEvent actionEvent) {
         int selectedIndex= locationsListView.getSelectionModel().getSelectedIndex();
-        if(selectedIndex < 5){
+        if(selectedIndex < 8){
             tabPane.getSelectionModel().select(1);
             selectedEnemy = Manager.getEnemies().get(selectedIndex);
             updateAttackscreen();
-        }else if(selectedIndex == 5){
+        }else if(selectedIndex == 8){
             tabPane.getSelectionModel().select(2);
             updateShopScreen();
         }
@@ -128,7 +135,7 @@ public class HelloController {
 //    }
 
     public void AddAttack(ActionEvent actionEvent) {
-        if(setdefense >5){
+        if(setattack >=5 && setdefense >1){
             setattack+=1;
             setdefense-=1;
         }
@@ -183,8 +190,16 @@ public class HelloController {
 
             enemyname.setText(Manager.getPlayer().getName() + " won");
             enemyDescriptionLabel.setText(Manager.getPlayer().getName() + " won");
-            Manager.getPlayer().addtuber(Manager.getEnemies().indexOf(selectedEnemy)*10);
+            int reward = 10
+                    + (selectedEnemy.getHealth() * 2)
+                    + (selectedEnemy.getAttack() * 2)
+                    + selectedEnemy.getDefense()
+                    + randnum(0, 10);
 
+            Manager.getPlayer().addtuber(reward);
+
+            System.out.println("You earned " + reward + " tubers!");
+            System.out.println("Total tubers: " + Manager.getPlayer().getTubers());            System.out.println(Manager.getPlayer().getTubers());
             BTMbtn.setVisible(true);
         }else if(won==1){
             enemyHealthLabel.setText(selectedEnemy.getName() + " won");
@@ -208,6 +223,15 @@ public class HelloController {
 
         enemyname.setText(selectedEnemy.getName());
         enemyDescriptionLabel.setText("Attack: "+selectedEnemy.getAttack()+" Defense: "+selectedEnemy.getDefense());
+
+        battleItemsListView.getItems().clear();
+        for (IndividualItemsOwned items: Manager.getPlayer().getItems()){
+            battleItemsListView.getItems().add(items.getall());
+        }
+        if (beenshop) {
+            weaponslst.setText(Manager.getPlayer().getWeapon().getall());
+
+        }
     }
 
     public void backToMap(ActionEvent actionEvent) {
@@ -218,13 +242,39 @@ public class HelloController {
     }
 
     public void updateShopScreen(){
+        beenshop = true;
         shopItemsListView.getItems().clear();
+        shopItemsListView1.getItems().clear();
+        ownedItemsListView.getItems().clear();
+
         shopGoldLabel.setText("tubers = "+ Manager.getPlayer().getTubers());
         for (Items items: Manager.getStoreitems()){
-            shopItemsListView.getItems().add(items.getall());
+            shopItemsListView.getItems().add(items.getwithpiceall());
+        }
+        for (Weapons weapons : Manager.getStoreweapons()){
+            shopItemsListView1.getItems().add(weapons.getallprice());
+
+        }
+        for (IndividualItemsOwned items: Manager.getPlayer().getItems()){
+            ownedItemsListView.getItems().add(items.getall());
         }
 
 
     }
 
+    public void onConfirmPurchasew(ActionEvent actionEvent) {
+    }
+
+    public int randnum(int min, int max){
+        int randomInt = (int)(Math.random() * (max - min + 1)) + min;
+        return randomInt;
+    }
+
+
+
+
 }
+
+
+
+
