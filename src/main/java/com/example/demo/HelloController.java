@@ -1,4 +1,4 @@
-//github
+
 package com.example.demo;
 
 import javafx.event.ActionEvent;
@@ -17,6 +17,7 @@ public class HelloController {
     public Tab stab;
     public Tab mtab;
     public Tab ltap;
+    public Button weaponSpecialButton;
     int reward;
     // Battle: Player
     public ImageView playerImage;
@@ -127,15 +128,31 @@ public class HelloController {
             tabPane.getSelectionModel().select(1);
             selectedEnemy = Manager.getEnemies().get(selectedIndex);
             updateAttackscreen();
-            reward = 10
-                    + (selectedEnemy.getHealth() * 2)
-                    + (selectedEnemy.getAttack() * 2)
+            reward =  selectedEnemy.getHealth()
+                    + selectedEnemy.getAttack()
                     + selectedEnemy.getDefense()
                     + randnum(0, 10);
+            Manager.resetSpecial();
+            battleLogListView.getItems().clear();
+
+            addBattleLog("⚔️ Battle started!");
+            addBattleLog("Your opponent is " + selectedEnemy.getName() + ".");
+            weaponSpecialButton.setDisable(false);
+
+            Manager.useArrow(selectedEnemy);
+
         }else if(selectedIndex == 8){
             tabPane.getSelectionModel().select(2);
             updateShopScreen();
         }
+        if (Manager.useArrow(selectedEnemy)) {
+            addBattleLog("🏹 You used an Arrow!");
+            addBattleLog("Your Arrow dealt 5 damage!");
+        }
+
+        updateAttackscreen();
+
+        iswon(Manager.checkifwon(selectedEnemy));
 
     }
 
@@ -191,10 +208,21 @@ public class HelloController {
     }
 
     public void handleAttack(ActionEvent actionEvent) {
-        Manager.attack(selectedEnemy);
+        int damage = Manager.attack(selectedEnemy);
+        addBattleLog("You attacked " + selectedEnemy.getName()
+                + " for " + damage + " damage!");
         iswon(Manager.checkifwon(selectedEnemy));
-        Manager.enemyattack(selectedEnemy);
-        iswon(Manager.checkifwon(selectedEnemy));
+        int result = Manager.checkifwon(selectedEnemy);
+        if(result == 3){
+            int edamage = Manager.enemyattack(selectedEnemy);
+
+            addBattleLog(selectedEnemy.getName()
+                    + " attacked you for " + edamage + " damage!");
+            iswon(Manager.checkifwon(selectedEnemy));
+        }else {
+            iswon(result);
+        }
+
 
 
     }
@@ -215,6 +243,7 @@ public class HelloController {
             System.out.println("Total tubers: " + Manager.getPlayer().getTubers());
             System.out.println(Manager.getPlayer().getTubers());
             BTMbtn.setVisible(true);
+            addBattleLog(" You defeated " + selectedEnemy.getName() + "!");
         }else if(won==1){
             enemyHealthLabel.setText(selectedEnemy.getName() + " won");
 
@@ -233,25 +262,54 @@ public class HelloController {
 
 
     public void updateAttackscreen(){
+        // Health
         enemyHealthLabel.setText(String.valueOf(selectedEnemy.getHealth()));
-
         playerHealthLabel.setText(String.valueOf(Manager.getPlayer().getHealth()));
-        playerDescriptionLabel.setText("Attack: "+Manager.getPlayer().getAttack()+" Defense: "+Manager.getPlayer().getDefense());
+
+        playerDescriptionLabel.setText(
+                " Attack: " + Manager.getPlayer().getAttack()
+                        + " Defense: " + Manager.getPlayer().getDefense()
+                        + " Speed: " + Manager.getPlayer().getSpeed()
+                        + " Critical Chance: " + (Manager.getPlayer().getCriticalchance() * 100) + "%"
+        );
 
         enemyname.setText(selectedEnemy.getName());
-        enemyDescriptionLabel.setText("Attack: "+selectedEnemy.getAttack()+" Defense: "+selectedEnemy.getDefense());
+
+        enemyDescriptionLabel.setText(
+                " Attack: " + selectedEnemy.getAttack()
+                        + " Defense: " + selectedEnemy.getDefense()
+                        + " Speed: " + selectedEnemy.getSpeed()
+                        + " Critical Chance: " + (selectedEnemy.getCriticalchance() * 100) + "%"
+        );
+
+        if (Manager.getPlayer().getWeapon() != null) {
+            playerDescriptionLabel.setText(
+                    playerDescriptionLabel.getText()
+                            + " Weapon: " + Manager.getPlayer().getWeapon().getName()
+                            + " Weapon Damage: " + Manager.getPlayer().getWeapon().getDamage()
+                            + " Weapon Special" + Manager.getPlayer().getWeapon().getSpecial()
+            );
+        } else {
+            playerDescriptionLabel.setText(
+                    playerDescriptionLabel.getText() + "Weapon: None"
+            );
+        }
 
         battleItemsListView.getItems().clear();
-        for (IndividualItemsOwned items: Manager.getPlayer().getItems()){
+
+        for (IndividualItemsOwned items : Manager.getPlayer().getItems()) {
             battleItemsListView.getItems().add(items.getall());
         }
-        if (beenshop) {
-            weaponslst.setText(Manager.getPlayer().getWeapon().getall());
 
-        }
+
     }
 
     public void backToMap(ActionEvent actionEvent) {
+        visitedLocationsListView.getItems().clear();
+
+        for (IndividualItemsOwned items : Manager.getPlayer().getItems()) {
+            visitedLocationsListView.getItems().add(items.getall());
+        }
         tabPane.getSelectionModel().select(3);
         BTMbtn.setVisible(false);
         updateAttackscreen();
@@ -293,8 +351,26 @@ public class HelloController {
     }
 
 
+    public void special(ActionEvent actionEvent) {
+        String result = Manager.useWeaponSpecial(selectedEnemy);
 
+        addBattleLog(result);
 
+        enemyHealthLabel.setText(
+                String.valueOf(selectedEnemy.getHealth())
+        );
+
+        iswon(Manager.checkifwon(selectedEnemy));
+    }
+
+    private void addBattleLog(String message) {
+        battleLogListView.getItems().add(message);
+
+        // Automatically scroll to the newest message
+        battleLogListView.scrollTo(
+                battleLogListView.getItems().size() - 1
+        );
+    }
 }
 
 

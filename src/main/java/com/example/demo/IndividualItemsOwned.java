@@ -21,6 +21,10 @@ public class IndividualItemsOwned {
     public void addUses(int i){
         uses += i;
     }
+    public void Use() {
+        uses -=1;
+    }
+
 
     public String getall(){
         return item.getall() + "uses" + uses;

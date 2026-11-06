@@ -10,26 +10,27 @@ public class Manager {
     private Charecter player;
     private ArrayList<Weapons> storeweapons = new ArrayList<>();
     private ArrayList<Items> storeitems = new ArrayList<>();
+    private boolean specialUsed = false;
 
 
 
     public Manager(){
-        enemies.add(new Enemy("Tunnel Scout", randnum(3,4), 2, randnum(10,14)));
-        enemies.add(new Enemy("Tuber Thief", randnum(4,5), 3, randnum(14,18)));
-        enemies.add(new Enemy("Colony Defender", randnum(5,6), 4, randnum(19,25)));
-        enemies.add(new Enemy("Incisor Warrior", randnum(7,8), 5, randnum(25,31)));
-        enemies.add(new Enemy("Tunnel Brute", randnum(9,10), 7, randnum(34,42)));
-        enemies.add(new Enemy("Royal Guard", randnum(12,13), 9, randnum(45,55)));
-        enemies.add(new Enemy("Queen's Champion", randnum(15,16), 12, randnum(58,72)));
-        enemies.add(new Enemy("The Queen", randnum(20,22), 16, randnum(90,110)));
-        storeitems.add(new Items("Small Tuber", 0, 0, randnum(13,17), randnum(4,6)));
-        storeitems.add(new Items("Sharpened Incisors", randnum(4,6), 0, randnum(23,27), 0));
-        storeitems.add(new Items("Thick Hide", 0, randnum(4,6), randnum(23,27), 0));
-        storeitems.add(new Items("Juicy Root", 0, 0, randnum(37,43), randnum(9,11)));
-        storeitems.add(new Items("Battle Tuber", randnum(4,6), randnum(4,6), randnum(60,70), 0));
-        storeitems.add(new Items("Golden Tuber", 0, 0, randnum(70,80), randnum(18,22)));
-        storeitems.add(new Items("Royal Warpaint", randnum(9,11), randnum(4,6), randnum(95,105), 0));
-        storeitems.add(new Items("Queen's Nectar", 0, 0, randnum(120,130), randnum(32,38)));
+        enemies.add(new Enemy("Tunnel Scout", randnum(3,4), 2, randnum(10,14), randnum(2,5)));
+        enemies.add(new Enemy("Tuber Thief", randnum(4,5), 3, randnum(14,18), randnum(3,6)));
+        enemies.add(new Enemy("Colony Defender", randnum(5,6), 4, randnum(19,25), randnum(3,7)));
+        enemies.add(new Enemy("Incisor Warrior", randnum(7,8), 5, randnum(25,31), randnum(5,8)));
+        enemies.add(new Enemy("Tunnel Brute", randnum(9,10), 7, randnum(34,42), randnum(1,4)));
+        enemies.add(new Enemy("Royal Guard", randnum(12,13), 9, randnum(45,55), randnum(6,9)));
+        enemies.add(new Enemy("Queen's Champion", randnum(15,16), 12, randnum(58,72), randnum(7,10)));
+        enemies.add(new Enemy("The Queen", randnum(20,22), 16, randnum(90,110), randnum(8,10)));
+        storeitems.add(new Items("Small Tuber", 0,  randnum(13,17), randnum(4,6)));
+        storeitems.add(new Items("Sharpened Incisors", randnum(4,6), randnum(23,27), 0));
+        storeitems.add(new Items("Thick Hide", 0,  randnum(23,27), 0));
+        storeitems.add(new Items("Juicy Root", 0,  randnum(37,43), randnum(9,11)));
+        storeitems.add(new Items("Battle Tuber", randnum(4,6),  randnum(60,70), 0));
+        storeitems.add(new Items("Golden Tuber", 0, randnum(70,80), randnum(18,22)));
+        storeitems.add(new Items("Royal Warpaint", randnum(9,11),  randnum(95,105), 0));
+        storeitems.add(new Items("Queen's Nectar", 0,  randnum(120,130), randnum(32,38)));
         storeweapons.add(new Weapons("Pebble", randnum(13,17), randnum(2,4)));
         storeweapons.add(new Weapons("Sharp Incisor", randnum(27,33), randnum(4,6)));
         storeweapons.add(new Weapons("Bone Dagger", randnum(45,55), randnum(6,8)));
@@ -37,36 +38,102 @@ public class Manager {
         storeweapons.add(new Weapons("Crystal Spear", randnum(105,115), randnum(12,14)));
         storeweapons.add(new Weapons("Royal Fang", randnum(150,170), randnum(16,18)));
         storeweapons.add(new Weapons("Queen's Scepter", randnum(240,260), randnum(21,23)));
+        storeitems.add(new Items("Arrow", 5,  randnum(5,10), 0));
 
     }
+    public void resetSpecial() {
+        specialUsed = false;
+    }
+    public String useWeaponSpecial(Enemy opponent) {
 
-    public void enemyattack(Enemy opponent){
-        System.out.println(opponent.getAttack());
-        System.out.println(player.getDefense());
-        if(opponent.getAttack()- player.getDefense()>0){
-            player.takedamage(opponent.getAttack()- player.getDefense());
+        if (specialUsed) {
+            return "You already used your weapon special this battle!";
         }
 
-    }
-    public void attack(Enemy opponent){
-
-        if (weapons== null){
-            if(player.getAttack()-opponent.getDefense()>0){
-                opponent.takeDamage(player.getAttack()-opponent.getDefense());
-
-            }
-
-        }else{
-            if(player.getAttack()+ weapons.getDamage()-opponent.getDefense()>0){
-                opponent.takeDamage(player.getAttack()+ weapons.getDamage()-opponent.getDefense());
-            }
-
+        if (player.getWeapon() == null) {
+            return "You need a weapon to use a special!";
         }
 
+        specialUsed = true;
 
+        String special = player.getWeapon().getSpecial();
+
+        int damage = 0;
+
+        if (special.equals("fire")) {
+            damage = 15;
+            opponent.takeDamage(Math.min(damage, opponent.getHealth()));
+            return "🔥 FIRE SPECIAL! You dealt 15 bonus damage!";
+
+        } else if (special.equals("lightning")) {
+            damage = 25;
+            opponent.takeDamage(Math.min(damage, opponent.getHealth()));
+            return "⚡ LIGHTNING SPECIAL! You dealt 25 bonus damage!";
+
+        } else if (special.equals("ice")) {
+            damage = 10;
+            opponent.takeDamage(Math.min(damage, opponent.getHealth()));
+            return "❄️ ICE SPECIAL! You dealt 10 damage!";
+        }
+
+        return "No special available!";
     }
 
+    public int attack(Enemy opponent) {
+        int weaponDamage = 0;
 
+        if (player.getWeapon() != null) {
+            weaponDamage = player.getWeapon().getDamage();
+        }
+
+        double attackMultiplier = 1 + (0.03 * player.getSpeed());
+        double defenseMultiplier = 1 + (0.05 * opponent.getDefense());
+
+        int damage = (int) ((player.getAttack() + weaponDamage)
+                * attackMultiplier / defenseMultiplier);
+
+        double chance = Math.min(0.60,
+                player.getCriticalchance() + (0.02 * player.getSpeed()));
+
+        boolean critical = Math.random() < chance;
+
+        if (critical) {
+            damage = (int) (damage * 1.75);
+        }
+
+        damage = Math.max(1, Math.min(damage, opponent.getHealth()));
+
+        opponent.takeDamage(damage);
+
+        System.out.println(critical ? "CRITICAL HIT!" : "Normal hit!");
+        System.out.println("Damage: " + damage);
+        return damage;
+    }
+    public int enemyattack(Enemy opponent) {
+
+        double attackMultiplier = 1 + (0.03 * opponent.getSpeed());
+        double defenseMultiplier = 1 + (0.05 * player.getDefense());
+
+        int damage = (int) (opponent.getAttack()
+                * attackMultiplier / defenseMultiplier);
+
+        double chance = Math.min(0.60,
+                opponent.getCriticalchance() + (0.02 * opponent.getSpeed()));
+
+        boolean critical = Math.random() < chance;
+
+        if (critical) {
+            damage = (int) (damage * 1.75);
+        }
+
+        damage = Math.max(1, Math.min(damage, player.getHealth()));
+
+        player.takedamage(damage);
+
+        System.out.println(critical ? "ENEMY CRITICAL HIT!" : "Enemy normal hit!");
+        System.out.println("Damage received: " + damage);
+        return damage;
+    }
 
 //yes
     public Charecter getPlayer() {
@@ -128,6 +195,23 @@ public class Manager {
     public void itembuyw(Weapons slectedpurchsew) {
 
         System.out.println(player.itembuyw(slectedpurchsew));
+    }
+    public boolean useArrow(Enemy selectedenemy) {
+
+        for (Items item : storeitems) {
+            if (item.getName().equals("Arrow")) {
+
+                if (player.arrowUse(item)) {
+                    int damage = Math.min(5, selectedenemy.getHealth());
+
+                    selectedenemy.takeDamage(damage);
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 

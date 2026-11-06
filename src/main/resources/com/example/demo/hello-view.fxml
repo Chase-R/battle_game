@@ -84,9 +84,10 @@
                 </center>
 
                 <right>
-                    <VBox prefWidth="220" spacing="7">
+                    <VBox prefHeight="579.0" prefWidth="399.0" spacing="7">
                         <Label style="-fx-font-weight: bold;" text="⚔️ Attacks" />
                   <Button mnemonicParsing="false" onAction="#handleAttack" text="Attack" />
+                  <Button fx:id="weaponSpecialButton" mnemonicParsing="false" onAction="#special" text="Special" />
 
                         <Label style="-fx-font-weight: bold;" text="🗡️ Weapons" />
 
@@ -105,6 +106,7 @@
                                 <Label text="Battle events" />
                             </placeholder>
                         </ListView>
+                  <Button mnemonicParsing="false" onAction="#handleAttack" text="Attack" />
                     </VBox>
                 </right>
             </BorderPane>
@@ -125,14 +127,14 @@
 
                         <Label fx:id="shopItemNameLabel" style="-fx-font-size: 18px;" text="Selected item name" />
 
-                        <Label fx:id="shopItemDescriptionLabel" maxWidth="300" text="Item description appears here." wrapText="true" />
-
                         <Label fx:id="shopItemPriceLabel" text="Price: 50 gold" />
+
+                        <Label fx:id="shopItemDescriptionLabel" maxWidth="300" prefHeight="17.0" prefWidth="232.0" text="          Arrows can be used to pre-attack enemys" wrapText="true" />
                     </VBox>
                 </center>
 
                 <right>
-                    <VBox prefWidth="260" spacing="10">
+                    <VBox prefHeight="573.0" prefWidth="505.0" spacing="10">
                         <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="🏪 Shop Inventory" />
 
                         <Label fx:id="shopGoldLabel" text="💰 Gold: 100" />
@@ -174,14 +176,14 @@
                     <VBox alignment="CENTER" spacing="12">
                         <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="🗺️ World Map" />
 
-                        <ImageView fx:id="worldMapImage" fitHeight="350" fitWidth="450" preserveRatio="true" />
+                        <ImageView fx:id="worldMapImage" fitHeight="350" fitWidth="343.0" preserveRatio="true" />
 
-                        <Label maxWidth="350" text="Explore locations throughout your adventure." wrapText="true" />
+                        <Label maxWidth="350" prefHeight="17.0" prefWidth="241.0" text="Explore locations throughout your adventure." wrapText="true" />
                     </VBox>
                 </center>
 
                 <right>
-                    <VBox prefWidth="250" spacing="10">
+                    <VBox prefHeight="573.0" prefWidth="330.0" spacing="10">
                         <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="📍 Destinations" />
 
                         <ListView fx:id="locationsListView" prefHeight="280">
@@ -190,17 +192,15 @@
                             </placeholder>
                         </ListView>
 
-                        <Label text="Location Details" />
-
-                        <Label fx:id="locationDetailsLabel" text="Select a location to see its description." wrapText="true" />
-
                         <Button fx:id="confirmDestinationButton" maxWidth="Infinity" onAction="#onConfirmDestination" text="Confirm Destination" />
 
-                        <Label text="Visited Locations" />
+                        <Label text="Inventory" />
+
+                        <Label fx:id="locationDetailsLabel" text="If you have an arrow in your inventory you will automatically deal 5 damage to the opponent" wrapText="true" />
 
                         <ListView fx:id="visitedLocationsListView" prefHeight="140">
                             <placeholder>
-                                <Label text="Your journey so far" />
+                                <Label text="Inventory" />
                             </placeholder>
                         </ListView>
                     </VBox>

@@ -4,30 +4,25 @@ public class Items {
 
     private String name;
     private int attack;
-    private int defense;
     private int price;
     private int heal;
-    private int uses = 3;
+    private int uses =1;
 
-    public Items(String name, int attack, int defense, int price, int heal) {
+    public Items(String name, int attack, int price, int heal) {
         this.name = name;
         this.attack = attack;
-        this.defense = defense;
         this.price = price;
         this.heal = heal;
     }
 
     public String getall(){
-        return name + " attack: "+attack+" defense: "+defense+" heal: "+heal;
+        return name + " attack: "+attack+" heal: "+heal;
     }
     public String getwithpiceall(){
-        return name + " attack: "+attack+" defense: "+defense+" price: "+price+" heal: "+heal;
+        return name + " attack: "+attack+" price: "+price+" heal: "+heal;
     }
 
 
-    public int getDefense() {
-        return defense;
-    }
 
     public int getAttack() {
         return attack;

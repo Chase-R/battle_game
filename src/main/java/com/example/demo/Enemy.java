@@ -7,18 +7,27 @@ public class Enemy {
     private int health;
     private int attack;
     private int defense;
+    private int speed;
+    private double criticalchance = 0.10;
     private ArrayList<IndividualItemsOwned> items = new ArrayList<>();
 
-    public Enemy(String name, int attack, int defense, int health){
+    public Enemy(String name, int attack, int defense, int health, int speed){
         this.attack=attack;
         this.defense = defense;
         this.name = name;
         this.health = health;
+        this.speed = speed;
     }
     public void takeDamage(int damage){
         health-=damage;
     }
+    public int getSpeed() {
+        return speed;
+    }
 
+    public double getCriticalchance() {
+        return criticalchance;
+    }
 
     public String getName() {
         return name;

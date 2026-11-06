@@ -8,6 +8,9 @@ public class Charecter {
     private int attack;
     private int defense;
     private int tubers = 0;
+    private int magicp = 5;
+    private int speed = 10-randnum(1,10);
+    private double criticalchance = (10-speed)/10;
     private Weapons weapon;
     private ArrayList<IndividualItemsOwned> items = new ArrayList<>();
 
@@ -55,6 +58,16 @@ public class Charecter {
 
     public Weapons getWeapon() {
         return weapon;
+    }
+    public boolean arrowUse(Items selectedItem) {
+        IndividualItemsOwned temp = ownItem(selectedItem);
+
+        if (temp != null && temp.getUses() > 0) {
+            temp.Use();
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -112,5 +125,30 @@ public class Charecter {
             }
         }
         return temp;
+    }
+
+    public int getMagicp() {
+        return magicp;
+    }
+
+    public void setMagicp(int magicp) {
+        this.magicp = magicp;
+    }
+
+    public int randnum(int min, int max){
+        int randomInt = (int)(Math.random() * (max - min + 1)) + min;
+        return randomInt;
+    }
+
+    public double getCriticalchance() {
+        return criticalchance;
+    }
+
+    public void setCriticalchance(double criticalchance) {
+        this.criticalchance = criticalchance;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 }
