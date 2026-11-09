@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <VBox spacing="10" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
 
@@ -121,48 +120,58 @@
                 </padding>
 
                 <center>
-                    <VBox alignment="CENTER" spacing="12">
-                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Item Preview" />
-
-                        <ImageView fx:id="shopItemImage" fitHeight="240" fitWidth="240" preserveRatio="true" />
-
-                        <Label fx:id="shopItemNameLabel" style="-fx-font-size: 18px;" text="Selected item name" />
-
-                        <Label fx:id="shopItemPriceLabel" text="Price: 50 gold" />
-
-                        <Label fx:id="shopItemDescriptionLabel" maxWidth="300" prefHeight="17.0" prefWidth="232.0" text="          Arrows can be used to pre-attack enemys" wrapText="true" />
+                    <VBox alignment="TOP_CENTER" prefHeight="192.0" prefWidth="388.0" spacing="12">
+                  <ListView fx:id="shopItemsListView1" prefHeight="109.0" prefWidth="401.0">
+                     <placeholder>
+                        <Label fx:id="weaponslst" text="Available weapons" />
+                     </placeholder>
+                  </ListView>
+                  <Button fx:id="confirmPurchaseButton1" maxWidth="Infinity" onAction="#onConfirmPurchasew" prefHeight="15.0" prefWidth="388.0" text="Confirm Weapon Purchase" />
                     </VBox>
                 </center>
 
                 <right>
-                    <VBox prefHeight="573.0" prefWidth="505.0" spacing="10">
-                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Shop Inventory" />
+                    <VBox alignment="TOP_CENTER" prefHeight="177.0" prefWidth="395.0" spacing="10">
 
-                        <Label fx:id="shopGoldLabel" text="Gold: 100" />
-
-                        <ListView fx:id="shopItemsListView" prefHeight="109.0" prefWidth="260.0">
+                        <ListView fx:id="shopItemsListView" prefHeight="109.0" prefWidth="382.0">
                             <placeholder>
                                 <Label text="Available items" />
                             </placeholder>
                         </ListView>
 
                         <Button fx:id="confirmPurchaseButton" maxWidth="Infinity" onAction="#onConfirmPurchase" text="Confirm Item Purchase" />
-                  <ListView fx:id="shopItemsListView1" prefHeight="109.0" prefWidth="260.0">
-                     <placeholder>
-                        <Label fx:id="weaponslst" text="Available weapons" />
-                     </placeholder>
-                  </ListView>
-                  <Button fx:id="confirmPurchaseButton1" maxWidth="Infinity" onAction="#onConfirmPurchasew" text="Confirm Weapon Purchase" />
-
-                        <Label text="Your Inventory" />
-
-                        <ListView fx:id="ownedItemsListView" prefHeight="150">
-                            <placeholder>
-                                <Label text="Items you own" />
-                            </placeholder>
-                        </ListView>
                     </VBox>
                 </right>
+            <top>
+               <VBox alignment="TOP_CENTER" prefHeight="72.0" prefWidth="783.0" BorderPane.alignment="CENTER">
+                  <children>
+            
+                                    <ImageView fx:id="shopItemImage" fitHeight="287.0" fitWidth="1647.0" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../images/Naked Mole-Rat Burrow Shop.png" />
+                        </image>
+                     </ImageView>
+   
+                              <Label fx:id="shopGoldLabel" text="Gold: 100" />
+   
+                              <Label fx:id="shopItemDescriptionLabel" maxWidth="300" prefHeight="17.0" prefWidth="232.0" text="          Arrows can be used to pre-attack enemys" wrapText="true" />
+                  </children>
+               </VBox>
+            </top>
+            <bottom>
+               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <children>
+   
+                           <Label text="Your Inventory" />
+   
+                           <ListView fx:id="ownedItemsListView" prefHeight="150">
+                               <placeholder>
+                                   <Label text="Items you own" />
+                               </placeholder>
+                           </ListView>
+                  </children>
+               </VBox>
+            </bottom>
             </BorderPane>
         </Tab>
 
@@ -213,11 +222,11 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="123.0" layoutY="236.0" text="You Lost!!!" textFill="RED">
-                     <font>
-                        <Font name="System Bold" size="96.0" />
-                     </font>
-                  </Label>
+                  <ImageView fitHeight="747.0" fitWidth="806.0" layoutX="4.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/Defeated Mole-Rat_ You Lose!.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
         </content>
