@@ -65,8 +65,8 @@ public class HelloController {
     public Button confirmPurchaseButton1;
     private Manager Manager =new Manager();
 
-    public int setattack=10;
-    public int setdefense = 0;
+    public int setattack=5;
+    public int setdefense = 5;
     public Enemy selectedEnemy;
     public boolean beenshop = false;
 
@@ -79,15 +79,11 @@ public class HelloController {
 
 
         tabPane.getTabs().remove(ltap);
-        // Initialize character choices here
-        // Initialize attacks, weapons, and items here
-        // Initialize shop inventory and map locations here
 
     }
 
     public void handleClick(ActionEvent actionEvent) {
 
-        // Handle button clicks here
 
     }
 
@@ -99,6 +95,8 @@ public class HelloController {
         System.out.println(Manager.getPlayer().getAttack());
         System.out.println(Manager.getPlayer().getDefense());
         tabPane.getSelectionModel().select(3);
+        tabPane.getTabs().remove(ctab);
+
 
 
 
@@ -109,6 +107,29 @@ public class HelloController {
     @FXML
     public void onConfirmAction(ActionEvent actionEvent) {
 
+        int selectedIndex = battleItemsListView.getSelectionModel().getSelectedIndex();
+
+        if (selectedIndex == -1) {
+            addBattleLog("Select an item first!");
+            return;
+        }
+
+        IndividualItemsOwned selected =
+                Manager.getPlayer().getItems().get(selectedIndex);
+
+        Items selectedItem = selected.getItem();
+
+        boolean used = Manager.useItem(selectedItem, selectedEnemy);
+
+        if (used) {
+            addBattleLog("You used " + selectedItem.getName() + "!");
+
+            updateAttackscreen();
+
+            iswon(Manager.checkifwon(selectedEnemy));
+        } else {
+            addBattleLog("You don't have any uses remaining!");
+        }
     }
 
     @FXML
@@ -125,7 +146,7 @@ public class HelloController {
     public void onConfirmDestination(ActionEvent actionEvent) {
         int selectedIndex= locationsListView.getSelectionModel().getSelectedIndex();
         if(selectedIndex < 8){
-            tabPane.getSelectionModel().select(1);
+            tabPane.getSelectionModel().select(0);
             selectedEnemy = Manager.getEnemies().get(selectedIndex);
             updateAttackscreen();
             reward =  selectedEnemy.getHealth()
@@ -142,7 +163,7 @@ public class HelloController {
             Manager.useArrow(selectedEnemy);
 
         }else if(selectedIndex == 8){
-            tabPane.getSelectionModel().select(2);
+            tabPane.getSelectionModel().select(1);
             updateShopScreen();
         }
         if (Manager.useArrow(selectedEnemy)) {
@@ -260,9 +281,10 @@ public class HelloController {
         }
     }
 
-
+//this update function was made with chast so the screen looked good
     public void updateAttackscreen(){
         // Health
+        battleItemsListView.getItems().clear();
         enemyHealthLabel.setText(String.valueOf(selectedEnemy.getHealth()));
         playerHealthLabel.setText(String.valueOf(Manager.getPlayer().getHealth()));
 
@@ -287,7 +309,7 @@ public class HelloController {
                     playerDescriptionLabel.getText()
                             + " Weapon: " + Manager.getPlayer().getWeapon().getName()
                             + " Weapon Damage: " + Manager.getPlayer().getWeapon().getDamage()
-                            + " Weapon Special" + Manager.getPlayer().getWeapon().getSpecial()
+                            + " Weapon Special: " + Manager.getPlayer().getWeapon().getSpecial()
             );
         } else {
             playerDescriptionLabel.setText(
@@ -310,7 +332,7 @@ public class HelloController {
         for (IndividualItemsOwned items : Manager.getPlayer().getItems()) {
             visitedLocationsListView.getItems().add(items.getall());
         }
-        tabPane.getSelectionModel().select(3);
+        tabPane.getSelectionModel().select(2);
         BTMbtn.setVisible(false);
         updateAttackscreen();
 

@@ -81,7 +81,7 @@ public class Charecter {
                 return "bought a new item" + items.getLast().getItem().getName();
 
             }else {
-                temp.addUses(3);
+                temp.addUses(1);
                 return "bought more of a item" + temp.getUses();
             }
 
@@ -140,6 +140,10 @@ public class Charecter {
         return randomInt;
     }
 
+    public void heal(int heal){
+        health+=heal;
+    }
+
     public double getCriticalchance() {
         return criticalchance;
     }
@@ -150,5 +154,20 @@ public class Charecter {
 
     public int getSpeed() {
         return speed;
+    }
+    public boolean itemUse(Items selectedItem){
+
+        IndividualItemsOwned temp = ownItem(selectedItem);
+
+        if (temp != null && temp.getUses() > 0){
+
+            health += selectedItem.getHeal();
+
+            temp.Use();
+
+            return true;
+        }
+
+        return false;
     }
 }

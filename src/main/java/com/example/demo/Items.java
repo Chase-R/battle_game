@@ -6,7 +6,7 @@ public class Items {
     private int attack;
     private int price;
     private int heal;
-    private int uses =1;
+    private int uses = 1;
 
     public Items(String name, int attack, int price, int heal) {
         this.name = name;

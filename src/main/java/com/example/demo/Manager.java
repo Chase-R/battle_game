@@ -15,6 +15,7 @@ public class Manager {
 
 
     public Manager(){
+        //chat creted the itms and enemys
         enemies.add(new Enemy("Tunnel Scout", randnum(3,4), 2, randnum(10,14), randnum(2,5)));
         enemies.add(new Enemy("Tuber Thief", randnum(4,5), 3, randnum(14,18), randnum(3,6)));
         enemies.add(new Enemy("Colony Defender", randnum(5,6), 4, randnum(19,25), randnum(3,7)));
@@ -78,6 +79,7 @@ public class Manager {
 
         return "No special available!";
     }
+    //the attack and enemy attack functins equation came from chat with prompting from what i wanted
 
     public int attack(Enemy opponent) {
         int weaponDamage = 0;
@@ -209,6 +211,28 @@ public class Manager {
                     return true;
                 }
             }
+        }
+
+        return false;
+    }
+
+    public boolean useItem(Items selectedItem, Enemy selectedEnemy){
+
+        if (selectedItem.getHeal() > 0) {
+            return player.itemUse(selectedItem);
+        }
+
+        IndividualItemsOwned temp = player.ownItem(selectedItem);
+
+        if (temp != null && temp.getUses() > 0) {
+
+            selectedEnemy.takeDamage(
+                    Math.min(selectedItem.getAttack(), selectedEnemy.getHealth())
+            );
+
+            temp.Use();
+
+            return true;
         }
 
         return false;
