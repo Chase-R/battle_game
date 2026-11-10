@@ -1,13 +1,17 @@
 
 package com.example.demo;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class HelloController {
+import java.util.Objects;
 
+public class HelloController {
+    private String selectedImagePath;
     // Character Selection
     public ListView characterImage;
     public Label characterDescription;
@@ -18,6 +22,10 @@ public class HelloController {
     public Tab mtab;
     public Tab ltap;
     public Button weaponSpecialButton;
+    public Button ib1;
+    public Button ib2;
+    public Button ib3;
+    public Button ib4;
     int reward;
     // Battle: Player
     public ImageView playerImage;
@@ -79,6 +87,8 @@ public class HelloController {
 
 
         tabPane.getTabs().remove(ltap);
+        tabPane.getTabs().clear();
+        tabPane.getTabs().add(ctab);
 
     }
 
@@ -90,12 +100,13 @@ public class HelloController {
     @FXML
     public void onConfirmCharacter(ActionEvent actionEvent) {
        Manager.setPlayer(new Charecter(nametxt.getText(), setattack, setdefense));
-
+        Manager.getPlayer().setImagePath(selectedImagePath);
         System.out.println(Manager.getPlayer().getName());
         System.out.println(Manager.getPlayer().getAttack());
         System.out.println(Manager.getPlayer().getDefense());
-        tabPane.getSelectionModel().select(3);
-        tabPane.getTabs().remove(ctab);
+        tabPane.getTabs().clear();
+        tabPane.getTabs().add(mtab);
+        tabPane.getSelectionModel().select(mtab);
 
 
 
@@ -146,7 +157,9 @@ public class HelloController {
     public void onConfirmDestination(ActionEvent actionEvent) {
         int selectedIndex= locationsListView.getSelectionModel().getSelectedIndex();
         if(selectedIndex < 8){
-            tabPane.getSelectionModel().select(0);
+            tabPane.getTabs().clear();
+            tabPane.getTabs().add(btab);
+            tabPane.getSelectionModel().select(btab);
             selectedEnemy = Manager.getEnemies().get(selectedIndex);
             updateAttackscreen();
             reward =  selectedEnemy.getHealth()
@@ -163,7 +176,9 @@ public class HelloController {
             Manager.useArrow(selectedEnemy);
 
         }else if(selectedIndex == 8){
-            tabPane.getSelectionModel().select(1);
+            tabPane.getTabs().clear();
+            tabPane.getTabs().add(stab);
+            tabPane.getSelectionModel().select(stab);
             updateShopScreen();
         }
         if (Manager.useArrow(selectedEnemy)) {
@@ -281,36 +296,47 @@ public class HelloController {
         }
     }
 
-//this update function was made with chast so the screen looked good
+
     public void updateAttackscreen(){
+        int enemyIndex = Manager.getEnemies().indexOf(selectedEnemy);
+
+        String enemyImagePath = "";
+
+        switch (enemyIndex) {
+            case 0: enemyImagePath = "/images/01_Tunnel_Scout.png"; break;
+            case 1: enemyImagePath = "/images/02_Tuber_Thief.png"; break;
+            case 2: enemyImagePath = "/images/03_Colony_Defender.png"; break;
+            case 3: enemyImagePath = "/images/04_Incisor_Warrior.png"; break;
+            case 4: enemyImagePath = "/images/05_Tunnel_Brute.png"; break;
+            case 5: enemyImagePath = "/images/06_Royal_Guard.png"; break;
+            case 6: enemyImagePath = "/images/07_Queens_Champion.png"; break;
+            case 7: enemyImagePath = "/images/08_The_Queen.png"; break;
+        }
+
+        enemyImage.setImage(
+                new Image(Objects.requireNonNull(
+                        getClass().getResourceAsStream(enemyImagePath)
+                ))
+        );
+        playerImage.setImage(
+                new Image(Objects.requireNonNull(getClass().getResourceAsStream(
+                        Manager.getPlayer().getImagePath()
+                )))
+        );
         // Health
         battleItemsListView.getItems().clear();
         enemyHealthLabel.setText(String.valueOf(selectedEnemy.getHealth()));
         playerHealthLabel.setText(String.valueOf(Manager.getPlayer().getHealth()));
 
-        playerDescriptionLabel.setText(
-                " Attack: " + Manager.getPlayer().getAttack()
-                        + " Defense: " + Manager.getPlayer().getDefense()
-                        + " Speed: " + Manager.getPlayer().getSpeed()
-                        + " Critical Chance: " + (Manager.getPlayer().getCriticalchance() * 100) + "%"
-        );
+        playerDescriptionLabel.setText(" Attack: " + Manager.getPlayer().getAttack() + " Defense: " + Manager.getPlayer().getDefense() + " Speed: " + Manager.getPlayer().getSpeed() + " Critical Chance: " + (Manager.getPlayer().getCriticalchance() * 100) + "%");
 
         enemyname.setText(selectedEnemy.getName());
 
-        enemyDescriptionLabel.setText(
-                " Attack: " + selectedEnemy.getAttack()
-                        + " Defense: " + selectedEnemy.getDefense()
-                        + " Speed: " + selectedEnemy.getSpeed()
-                        + " Critical Chance: " + (selectedEnemy.getCriticalchance() * 100) + "%"
-        );
+        enemyDescriptionLabel.setText(" Attack: " + selectedEnemy.getAttack() + " Defense: " + selectedEnemy.getDefense() + " Speed: " + selectedEnemy.getSpeed() + " Critical Chance: " + (selectedEnemy.getCriticalchance() * 100) + "%");
 
         if (Manager.getPlayer().getWeapon() != null) {
             playerDescriptionLabel.setText(
-                    playerDescriptionLabel.getText()
-                            + " Weapon: " + Manager.getPlayer().getWeapon().getName()
-                            + " Weapon Damage: " + Manager.getPlayer().getWeapon().getDamage()
-                            + " Weapon Special: " + Manager.getPlayer().getWeapon().getSpecial()
-            );
+                    playerDescriptionLabel.getText() + " Weapon: " + Manager.getPlayer().getWeapon().getName() + " Weapon Damage: " + Manager.getPlayer().getWeapon().getDamage() + " Weapon Special: " + Manager.getPlayer().getWeapon().getSpecial());
         } else {
             playerDescriptionLabel.setText(
                     playerDescriptionLabel.getText() + "Weapon: None"
@@ -332,7 +358,9 @@ public class HelloController {
         for (IndividualItemsOwned items : Manager.getPlayer().getItems()) {
             visitedLocationsListView.getItems().add(items.getall());
         }
-        tabPane.getSelectionModel().select(2);
+        tabPane.getTabs().clear();
+        tabPane.getTabs().add(mtab);
+        tabPane.getSelectionModel().select(mtab);
         BTMbtn.setVisible(false);
         updateAttackscreen();
 
@@ -388,10 +416,36 @@ public class HelloController {
     private void addBattleLog(String message) {
         battleLogListView.getItems().add(message);
 
-        // Automatically scroll to the newest message
         battleLogListView.scrollTo(
                 battleLogListView.getItems().size() - 1
         );
+    }
+//chat helped make
+    public void iselct(ActionEvent actionEvent) {
+        Button clickedButton = (Button) actionEvent.getSource();
+
+        String imagePath = "";
+
+        switch (clickedButton.getId()) {
+            case "ib1":
+                imagePath = "/images/mrat1.jpg";
+                break;
+
+            case "ib2":
+                imagePath = "/images/mrat2.jpg";
+                break;
+
+            case "ib3":
+                imagePath = "/images/mrat3.jpg";
+                break;
+
+            case "ib4":
+                imagePath = "/images/mrat4.jpg";
+                break;
+        }
+
+        selectedImagePath = imagePath;
+        System.out.println("Selected: " + selectedImagePath);
     }
 }
 

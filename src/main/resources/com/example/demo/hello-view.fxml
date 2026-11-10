@@ -32,7 +32,35 @@
                 </padding>
 
                 <center>
-                    <VBox alignment="CENTER" spacing="12">
+                    <VBox alignment="CENTER" prefHeight="725.0" prefWidth="800.0" spacing="12">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/mrat1.jpg" />
+                           </image></ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/mrat2.jpg" />
+                           </image></ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/mrat3.jpg" />
+                           </image></ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/mrat4.jpg" />
+                           </image></ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+                     <children>
+                        <Button fx:id="ib1" mnemonicParsing="false" onAction="#iselct" text="select" />
+                        <Button fx:id="ib2" mnemonicParsing="false" onAction="#iselct" text="select" />
+                        <Button fx:id="ib3" mnemonicParsing="false" onAction="#iselct" text="select" />
+                        <Button fx:id="ib4" contentDisplay="CENTER" mnemonicParsing="false" onAction="#iselct" text="select" />
+                     </children>
+                  </HBox>
                         <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Your Character" />
                   <Label fx:id="attacklbl" text="Attack" />
                   <Label fx:id="defenselbl" text="defense" />
@@ -114,13 +142,13 @@
 
         <!-- SHOP -->
         <Tab fx:id="stab" text="Shop">
-            <BorderPane>
+            <BorderPane prefHeight="658.0" prefWidth="813.0">
                 <padding>
                     <Insets bottom="15" left="15" right="15" top="15" />
                 </padding>
 
                 <center>
-                    <VBox alignment="TOP_CENTER" prefHeight="192.0" prefWidth="388.0" spacing="12">
+                    <VBox alignment="TOP_CENTER" prefHeight="285.0" prefWidth="388.0" spacing="12">
                   <ListView fx:id="shopItemsListView1" prefHeight="109.0" prefWidth="401.0">
                      <placeholder>
                         <Label fx:id="weaponslst" text="Available weapons" />
@@ -131,7 +159,7 @@
                 </center>
 
                 <right>
-                    <VBox alignment="TOP_CENTER" prefHeight="177.0" prefWidth="395.0" spacing="10">
+                    <VBox alignment="TOP_CENTER" prefHeight="253.0" prefWidth="395.0" spacing="10">
 
                         <ListView fx:id="shopItemsListView" prefHeight="109.0" prefWidth="382.0">
                             <placeholder>
@@ -143,8 +171,9 @@
                     </VBox>
                 </right>
             <top>
-               <VBox alignment="TOP_CENTER" prefHeight="72.0" prefWidth="783.0" BorderPane.alignment="CENTER">
+               <VBox alignment="TOP_CENTER" prefHeight="486.0" prefWidth="783.0" BorderPane.alignment="CENTER">
                   <children>
+                     <Button mnemonicParsing="false" onAction="#backToMap" text=" Back To Map" />
             
                                     <ImageView fx:id="shopItemImage" fitHeight="287.0" fitWidth="1647.0" preserveRatio="true">
                         <image>
@@ -155,23 +184,21 @@
                               <Label fx:id="shopGoldLabel" text="Gold: 100" />
    
                               <Label fx:id="shopItemDescriptionLabel" maxWidth="300" prefHeight="17.0" prefWidth="232.0" text="          Arrows can be used to pre-attack enemys" wrapText="true" />
+                     <VBox alignment="TOP_CENTER" prefHeight="152.0" prefWidth="783.0">
+                        <children>
+         
+                                 <Label text="Your Inventory" />
+         
+                                 <ListView fx:id="ownedItemsListView" prefHeight="150">
+                                     <placeholder>
+                                         <Label text="Items you own" />
+                                     </placeholder>
+                                 </ListView>
+                        </children>
+                     </VBox>
                   </children>
                </VBox>
             </top>
-            <bottom>
-               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                  <children>
-   
-                           <Label text="Your Inventory" />
-   
-                           <ListView fx:id="ownedItemsListView" prefHeight="150">
-                               <placeholder>
-                                   <Label text="Items you own" />
-                               </placeholder>
-                           </ListView>
-                  </children>
-               </VBox>
-            </bottom>
             </BorderPane>
         </Tab>
 
@@ -183,39 +210,46 @@
                 </padding>
 
                 <center>
-                    <VBox alignment="CENTER" spacing="12">
+                    <VBox alignment="CENTER" prefHeight="460.0" prefWidth="783.0" spacing="12">
                         <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text=" World Map" />
-                  <ImageView fitHeight="242.0" fitWidth="444.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="407.0" fitWidth="1168.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/map.png" />
                      </image>
                   </ImageView>
                     </VBox>
                 </center>
-
-                <right>
-                    <VBox prefHeight="573.0" prefWidth="330.0" spacing="10">
-                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="📍 Destinations" />
-
-                        <ListView fx:id="locationsListView" prefHeight="280">
-                            <placeholder>
-                                <Label text="Available locations" />
-                            </placeholder>
-                        </ListView>
-
-                        <Button fx:id="confirmDestinationButton" maxWidth="Infinity" onAction="#onConfirmDestination" text="Confirm Destination" />
-
-                        <Label text="Inventory" />
-
-                        <Label fx:id="locationDetailsLabel" text="If you have an arrow in your inventory you will automatically deal 5 damage to the opponent" wrapText="true" />
-
-                        <ListView fx:id="visitedLocationsListView" prefHeight="140">
-                            <placeholder>
-                                <Label text="Inventory" />
-                            </placeholder>
-                        </ListView>
-                    </VBox>
-                </right>
+            <bottom>
+               <HBox prefHeight="368.0" prefWidth="783.0" BorderPane.alignment="CENTER">
+                  <children>
+                          <VBox prefHeight="368.0" prefWidth="415.0" spacing="10">
+                              <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="📍 Destinations" />
+      
+                              <ListView fx:id="locationsListView" prefHeight="280" prefWidth="364.0">
+                                  <placeholder>
+                                      <Label text="Available locations" />
+                                  </placeholder>
+                              </ListView>
+      
+                              <Button fx:id="confirmDestinationButton" maxWidth="Infinity" onAction="#onConfirmDestination" text="Confirm Destination" />
+                          </VBox>
+                     <VBox prefHeight="368.0" prefWidth="436.0">
+                        <children>
+         
+                                 <Label text="Inventory" />
+         
+                                 <Label fx:id="locationDetailsLabel" text="If you have an arrow in your inventory you will automatically deal 5 damage to the opponent" wrapText="true" />
+         
+                                 <ListView fx:id="visitedLocationsListView" prefHeight="302.0" prefWidth="402.0">
+                                     <placeholder>
+                                         <Label text="Inventory" />
+                                     </placeholder>
+                                 </ListView>
+                        </children>
+                     </VBox>
+                  </children>
+               </HBox>
+            </bottom>
             </BorderPane>
         </Tab>
       <Tab fx:id="ltap" text="you lose">

@@ -10,9 +10,18 @@ public class Charecter {
     private int tubers = 0;
     private int magicp = 5;
     private int speed = 10-randnum(1,10);
-    private double criticalchance = (10-speed)/10;
+    private double criticalchance = (double) (10 - speed) /10;
     private Weapons weapon;
     private ArrayList<IndividualItemsOwned> items = new ArrayList<>();
+    private String imagePath;
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
 
 
     public Charecter(String name, int attack, int defense){
