@@ -12,6 +12,7 @@ public class Manager {
     private ArrayList<Items> storeitems = new ArrayList<>();
     private boolean specialUsed = false;
 
+//,
 
 
     public Manager(){

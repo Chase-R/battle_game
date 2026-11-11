@@ -1,6 +1,7 @@
 package com.example.demo;
 //github
 public class IndividualItemsOwned {
+//,
 
     private Items item;
     private int uses;

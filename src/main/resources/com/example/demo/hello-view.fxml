@@ -230,7 +230,8 @@
                                       <Label text="Available locations" />
                                   </placeholder>
                               </ListView>
-      
+                              //,
+
                               <Button fx:id="confirmDestinationButton" maxWidth="Infinity" onAction="#onConfirmDestination" text="Confirm Destination" />
                           </VBox>
                      <VBox prefHeight="368.0" prefWidth="436.0">
