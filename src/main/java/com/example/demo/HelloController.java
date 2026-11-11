@@ -8,9 +8,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.lang.reflect.Array;
 import java.util.Objects;
 
 public class HelloController {
+    public Tab wtap;
     private String selectedImagePath;
     // Character Selection
     public ListView characterImage;
@@ -77,7 +79,7 @@ public class HelloController {
     public int setdefense = 5;
     public Enemy selectedEnemy;
     public boolean beenshop = false;
-
+    boolean[] boolArray = new boolean[8];
     public Weapons selectedweapon;
 
     @FXML
@@ -157,23 +159,29 @@ public class HelloController {
     public void onConfirmDestination(ActionEvent actionEvent) {
         int selectedIndex= locationsListView.getSelectionModel().getSelectedIndex();
         if(selectedIndex < 8){
-            tabPane.getTabs().clear();
-            tabPane.getTabs().add(btab);
-            tabPane.getSelectionModel().select(btab);
-            selectedEnemy = Manager.getEnemies().get(selectedIndex);
-            updateAttackscreen();
-            reward =  selectedEnemy.getHealth()
-                    + selectedEnemy.getAttack()
-                    + selectedEnemy.getDefense()
-                    + randnum(0, 10);
-            Manager.resetSpecial();
-            battleLogListView.getItems().clear();
+            if(boolArray[selectedIndex] == false){
+                tabPane.getTabs().clear();
+                tabPane.getTabs().add(btab);
+                tabPane.getSelectionModel().select(btab);
+                selectedEnemy = Manager.getEnemies().get(selectedIndex);
+                updateAttackscreen();
+                reward =  selectedEnemy.getHealth()
+                        + selectedEnemy.getAttack()
+                        + selectedEnemy.getDefense()
+                        + randnum(0, 10);
+                Manager.resetSpecial();
+                battleLogListView.getItems().clear();
 
-            addBattleLog("⚔️ Battle started!");
-            addBattleLog("Your opponent is " + selectedEnemy.getName() + ".");
-            weaponSpecialButton.setDisable(false);
+                addBattleLog("⚔️ Battle started!");
+                addBattleLog("Your opponent is " + selectedEnemy.getName() + ".");
+                weaponSpecialButton.setDisable(false);
 
-            Manager.useArrow(selectedEnemy);
+                Manager.useArrow(selectedEnemy);
+                boolArray[selectedIndex] = true;
+            }else {
+                System.out.println("already defeated");
+            }
+
 
         }else if(selectedIndex == 8){
             tabPane.getTabs().clear();
@@ -280,6 +288,12 @@ public class HelloController {
             System.out.println(Manager.getPlayer().getTubers());
             BTMbtn.setVisible(true);
             addBattleLog(" You defeated " + selectedEnemy.getName() + "!");
+            reward = 0;
+            if(selectedEnemy.getName().equals("The Queen")){
+                tabPane.getTabs().clear();
+                tabPane.getTabs().add(wtap);
+                tabPane.getSelectionModel().select(wtap);
+            }
         }else if(won==1){
             enemyHealthLabel.setText(selectedEnemy.getName() + " won");
 
