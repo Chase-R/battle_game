@@ -14,111 +14,88 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox spacing="12"
-      style="-fx-background-color: #18201f; -fx-font-family: 'Arial';"
-      xmlns="http://javafx.com/javafx/19"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.demo.HelloController">
+<VBox spacing="12" style="-fx-background-color: #18201f; -fx-font-family: 'Arial';" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
 
     <padding>
-        <Insets top="14" right="14" bottom="14" left="14"/>
+        <Insets bottom="14" left="14" right="14" top="14" />
     </padding>
 
-    <Label text="⚔️ KINGDOMS BENEATH"
-           style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+    <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="⚔️ KINGDOMS BENEATH" />
 
-    <TabPane fx:id="tabPane"
-             tabClosingPolicy="UNAVAILABLE"
-             VBox.vgrow="ALWAYS"
-             style="-fx-background-color: #26312f;">
+    <TabPane fx:id="tabPane" style="-fx-background-color: #26312f;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
 
         <!-- CHARACTER SELECTION -->
         <Tab fx:id="ctab" text="Character">
             <BorderPane style="-fx-background-color: #202a28;">
                 <padding>
-                    <Insets top="22" right="22" bottom="22" left="22"/>
+                    <Insets bottom="22" left="22" right="22" top="22" />
                 </padding>
 
                 <center>
-                    <VBox alignment="CENTER" spacing="18"
-                          style="-fx-background-color: #2b3834; -fx-background-radius: 16; -fx-border-color: #927548; -fx-border-radius: 16; -fx-border-width: 1.5;">
+                    <VBox alignment="CENTER" spacing="18" style="-fx-background-color: #2b3834; -fx-background-radius: 16; -fx-border-color: #927548; -fx-border-radius: 16; -fx-border-width: 1.5;">
                         <padding>
-                            <Insets top="22" right="22" bottom="22" left="22"/>
+                            <Insets bottom="22" left="22" right="22" top="22" />
                         </padding>
 
-                        <Label text="CHOOSE YOUR MOLE-RAT"
-                               style="-fx-font-size: 21px; -fx-font-weight: bold; -fx-text-fill: #f0d69b;"/>
+                        <Label style="-fx-font-size: 21px; -fx-font-weight: bold; -fx-text-fill: #f0d69b;" text="CHOOSE YOUR MOLE-RAT" />
 
                         <HBox alignment="CENTER" spacing="16">
 
                             <VBox alignment="CENTER" spacing="10">
                                 <ImageView fitHeight="145" fitWidth="145" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/mrat1.jpg"/>
+                                        <Image url="@../../../images/mrat1.jpg" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="ib1" mnemonicParsing="false" onAction="#iselct" text="Select"
-                                        style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                                <Button fx:id="ib1" mnemonicParsing="false" onAction="#iselct" style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;" text="Select" />
                             </VBox>
 
                             <VBox alignment="CENTER" spacing="10">
                                 <ImageView fitHeight="145" fitWidth="145" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/mrat2.jpg"/>
+                                        <Image url="@../../../images/mrat2.jpg" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="ib2" mnemonicParsing="false" onAction="#iselct" text="Select"
-                                        style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                                <Button fx:id="ib2" mnemonicParsing="false" onAction="#iselct" style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;" text="Select" />
                             </VBox>
 
                             <VBox alignment="CENTER" spacing="10">
                                 <ImageView fitHeight="145" fitWidth="145" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/mrat3.jpg"/>
+                                        <Image url="@../../../images/mrat3.jpg" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="ib3" mnemonicParsing="false" onAction="#iselct" text="Select"
-                                        style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                                <Button fx:id="ib3" mnemonicParsing="false" onAction="#iselct" style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;" text="Select" />
                             </VBox>
 
                             <VBox alignment="CENTER" spacing="10">
                                 <ImageView fitHeight="145" fitWidth="145" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../images/mrat4.jpg"/>
+                                        <Image url="@../../../images/mrat4.jpg" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="ib4" contentDisplay="CENTER" mnemonicParsing="false" onAction="#iselct" text="Select"
-                                        style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                                <Button fx:id="ib4" contentDisplay="CENTER" mnemonicParsing="false" onAction="#iselct" style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;" text="Select" />
                             </VBox>
 
                         </HBox>
 
-                        <Label text="BUILD YOUR CHARACTER"
-                               style="-fx-font-size: 19px; -fx-font-weight: bold; -fx-text-fill: #f0d69b;"/>
+                        <Label style="-fx-font-size: 19px; -fx-font-weight: bold; -fx-text-fill: #f0d69b;" text="BUILD YOUR CHARACTER" />
 
                         <HBox alignment="CENTER" spacing="35">
                             <VBox alignment="CENTER" spacing="8">
-                                <Label fx:id="attacklbl" text="Attack"
-                                       style="-fx-font-size: 15px; -fx-text-fill: white;"/>
-                                <Button mnemonicParsing="false" onAction="#AddAttack" text="Attack +1"
-                                        style="-fx-background-color: #9a573e; -fx-text-fill: white;"/>
+                                <Label fx:id="attacklbl" style="-fx-font-size: 15px; -fx-text-fill: white;" text="Attack" />
+                                <Button mnemonicParsing="false" onAction="#AddAttack" style="-fx-background-color: #9a573e; -fx-text-fill: white;" text="Attack +1" />
                             </VBox>
 
                             <VBox alignment="CENTER" spacing="8">
-                                <Label fx:id="defenselbl" text="Defense"
-                                       style="-fx-font-size: 15px; -fx-text-fill: white;"/>
-                                <Button mnemonicParsing="false" onAction="#addDefense" text="Defense +1"
-                                        style="-fx-background-color: #496d65; -fx-text-fill: white;"/>
+                                <Label fx:id="defenselbl" style="-fx-font-size: 15px; -fx-text-fill: white;" text="Defense" />
+                                <Button mnemonicParsing="false" onAction="#addDefense" style="-fx-background-color: #496d65; -fx-text-fill: white;" text="Defense +1" />
                             </VBox>
                         </HBox>
 
-                        <TextField fx:id="nametxt" promptText="Enter your character's name"
-                                   maxWidth="300"
-                                   style="-fx-background-radius: 8; -fx-padding: 9;"/>
+                        <TextField fx:id="nametxt" maxWidth="300" promptText="Enter your character's name" style="-fx-background-radius: 8; -fx-padding: 9;" />
 
-                        <Button mnemonicParsing="false" onAction="#onConfirmCharacter" text="Begin Adventure"
-                                prefWidth="220" prefHeight="40"
-                                style="-fx-background-color: #b18a4c; -fx-text-fill: #18201f; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 8;"/>
+                        <Button mnemonicParsing="false" onAction="#onConfirmCharacter" prefHeight="40" prefWidth="220" style="-fx-background-color: #b18a4c; -fx-text-fill: #18201f; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 8;" text="Begin Adventure" />
 
                     </VBox>
                 </center>
@@ -129,97 +106,88 @@
         <Tab fx:id="btab" text="Battle">
             <BorderPane style="-fx-background-color: #202a28;">
                 <padding>
-                    <Insets top="16" right="16" bottom="16" left="16"/>
+                    <Insets bottom="16" left="16" right="16" top="16" />
                 </padding>
 
                 <center>
                     <VBox alignment="CENTER" spacing="18">
 
-                        <Button fx:id="BTMbtn" mnemonicParsing="false" onAction="#backToMap"
-                                text="Back to Map" visible="false"/>
+                        <Button fx:id="BTMbtn" mnemonicParsing="false" onAction="#backToMap" text="Back to Map" visible="false" />
 
-                        <Label text="THE ARENA"
-                               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="THE ARENA" />
 
                         <HBox alignment="CENTER" spacing="34">
 
-                            <VBox alignment="CENTER" spacing="12"
-                                  style="-fx-background-color: #2b3834; -fx-background-radius: 14; -fx-padding: 18; -fx-border-color: #496d65; -fx-border-radius: 14;">
-                                <Label text="YOUR HERO"
-                                       style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                            <VBox alignment="CENTER" spacing="12" style="-fx-background-color: #2b3834; -fx-background-radius: 14; -fx-padding: 18; -fx-border-color: #496d65; -fx-border-radius: 14;">
+                                <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: white;" text="YOUR HERO" />
 
-                                <ImageView fx:id="playerImage" fitHeight="190" fitWidth="190" preserveRatio="true"/>
+                                <ImageView fx:id="playerImage" fitHeight="190" fitWidth="190" preserveRatio="true" />
 
-                                <Label fx:id="playerHealthLabel" text="Health: 100 / 100"
-                                       style="-fx-font-weight: bold; -fx-text-fill: #a8d7a1;"/>
+                                <Label fx:id="playerHealthLabel" style="-fx-font-weight: bold; -fx-text-fill: #a8d7a1;" text="Health: 100 / 100" />
 
-                                <Label fx:id="playerDescriptionLabel" maxWidth="190" text="Hero description"
-                                       wrapText="true" style="-fx-text-fill: white;"/>
+                                <Label fx:id="playerMagicLabel" style="-fx-font-weight: bold; -fx-text-fill: #bda4f0;" text="Magic: 0 MP" />
+                        <Label fx:id="playerMagicLabel1" style="-fx-font-weight: bold; -fx-text-fill: #bda4f0;" text="Max Magic: 0 MP" />
+
+                                <Label fx:id="playerDescriptionLabel" maxWidth="190" style="-fx-text-fill: white;" text="Hero description" wrapText="true" />
                             </VBox>
 
-                            <Label text="VS"
-                                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                            <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="VS" />
 
-                            <VBox alignment="CENTER" spacing="12"
-                                  style="-fx-background-color: #2b3834; -fx-background-radius: 14; -fx-padding: 18; -fx-border-color: #9a573e; -fx-border-radius: 14;">
-                                <Label fx:id="enemyname" text="Enemy"
-                                       style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                            <VBox alignment="CENTER" spacing="12" style="-fx-background-color: #2b3834; -fx-background-radius: 14; -fx-padding: 18; -fx-border-color: #9a573e; -fx-border-radius: 14;">
+                                <Label fx:id="enemyname" style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: white;" text="Enemy" />
 
-                                <ImageView fx:id="enemyImage" fitHeight="190" fitWidth="190" preserveRatio="true"/>
+                                <ImageView fx:id="enemyImage" fitHeight="190" fitWidth="190" preserveRatio="true" />
 
-                                <Label fx:id="enemyHealthLabel" text="Health: 100 / 100"
-                                       style="-fx-font-weight: bold; -fx-text-fill: #e5a18c;"/>
-
-                                <Label fx:id="enemyDescriptionLabel" maxWidth="190" text="Enemy description"
-                                       wrapText="true" style="-fx-text-fill: white;"/>
+                                <Label fx:id="enemyHealthLabel" style="-fx-font-weight: bold; -fx-text-fill: #e5a18c;" text="Health: 100 / 100" />
+                                <Label fx:id="enemyMagicLabel" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #bda4f0;" text="Magic: 0 MP" />
+                                <Label fx:id="enemyDescriptionLabel" maxWidth="190" style="-fx-text-fill: white;" text="Enemy description" wrapText="true" />
                             </VBox>
 
                         </HBox>
 
-                        <Button fx:id="confirmActionButton" onAction="#onConfirmAction"
-                                prefHeight="42" prefWidth="220" text="Confirm Action"
-                                style="-fx-background-color: #b18a4c; -fx-text-fill: #18201f; -fx-font-weight: bold; -fx-background-radius: 8;"/>
+                        <Button fx:id="confirmActionButton" onAction="#onConfirmAction" prefHeight="42" prefWidth="220" style="-fx-background-color: #b18a4c; -fx-text-fill: #18201f; -fx-font-weight: bold; -fx-background-radius: 8;" text="Confirm Action" />
 
                     </VBox>
                 </center>
 
                 <right>
-                    <VBox prefWidth="235" spacing="12"
-                          style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 16;">
+                    <VBox prefWidth="235" spacing="8" style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 16;">
 
-                        <Label text="⚔️ BATTLE ACTIONS"
-                               style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                        <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="⚔️ BATTLE ACTIONS" />
 
-                        <Button mnemonicParsing="false" onAction="#handleAttack" text="Attack"
-                                maxWidth="Infinity"
-                                style="-fx-background-color: #9a573e; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleAttack" style="-fx-background-color: #9a573e; -fx-text-fill: white; -fx-font-weight: bold;" text="Attack" />
 
-                        <Button fx:id="weaponSpecialButton" mnemonicParsing="false" onAction="#special"
-                                text="Weapon Special" maxWidth="Infinity"
-                                style="-fx-background-color: #76619a; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                        <Button fx:id="weaponSpecialButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#special" style="-fx-background-color: #76619a; -fx-text-fill: white; -fx-font-weight: bold;" text="Weapon Special" />
 
-                        <Label text="Weapons" style="-fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #bda4f0;" text="✨ MAGIC ABILITIES" />
 
-                        <Label text="Items" style="-fx-font-weight: bold; -fx-text-fill: white;"/>
+                        <Label style="-fx-text-fill: white;" text="MP to spend:" />
 
-                        <ListView fx:id="battleItemsListView" prefHeight="110">
+                        <TextField fx:id="magicAmountField" maxWidth="Infinity" promptText="Enter MP amount" style="-fx-background-radius: 6; -fx-padding: 8;" />
+
+                        <Button fx:id="magicAttackButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#selectMagicAttack" style="-fx-background-color: #76619a; -fx-text-fill: white; -fx-font-weight: bold;" text="Magic Attack" />
+
+                        <Button fx:id="magicHealButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#selectMagicHeal" style="-fx-background-color: #557b58; -fx-text-fill: white; -fx-font-weight: bold;" text="Magic Heal" />
+
+                        <Button fx:id="magicShieldButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#selectMagicShield" style="-fx-background-color: #496d85; -fx-text-fill: white; -fx-font-weight: bold;" text="Magic Shield" />
+
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: white;" text="Weapons" />
+
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: white;" text="Items" />
+
+                        <ListView fx:id="battleItemsListView" prefHeight="85">
                             <placeholder>
-                                <Label text="Available items"/>
+                                <Label text="Available items" />
                             </placeholder>
                         </ListView>
 
-                        <Label text="Battle Log"
-                               style="-fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="Battle Log" />
 
-                        <ListView fx:id="battleLogListView" prefHeight="170" VBox.vgrow="ALWAYS">
+                        <ListView fx:id="battleLogListView" prefHeight="125" VBox.vgrow="ALWAYS">
                             <placeholder>
-                                <Label text="Battle events"/>
+                                <Label text="Battle events" />
                             </placeholder>
                         </ListView>
-
-                        <Button mnemonicParsing="false" onAction="#handleAttack" text="Attack"
-                                maxWidth="Infinity"
-                                style="-fx-background-color: #9a573e; -fx-text-fill: white; -fx-font-weight: bold;"/>
 
                     </VBox>
                 </right>
@@ -230,28 +198,23 @@
         <Tab fx:id="stab" text="Shop">
             <BorderPane style="-fx-background-color: #202a28;">
                 <padding>
-                    <Insets top="16" right="16" bottom="16" left="16"/>
+                    <Insets bottom="16" left="16" right="16" top="16" />
                 </padding>
 
                 <top>
-                    <VBox alignment="CENTER" spacing="10"
-                          style="-fx-background-color: #2b3834; -fx-background-radius: 14; -fx-padding: 14;">
+                    <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #2b3834; -fx-background-radius: 14; -fx-padding: 14;">
 
-                        <Button mnemonicParsing="false" onAction="#backToMap" text="Back To Map"
-                                style="-fx-background-color: #496d65; -fx-text-fill: white;"/>
+                        <Button mnemonicParsing="false" onAction="#backToMap" style="-fx-background-color: #496d65; -fx-text-fill: white;" text="Back To Map" />
 
                         <ImageView fx:id="shopItemImage" fitHeight="210" fitWidth="850" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/Naked Mole-Rat Burrow Shop.png"/>
+                                <Image url="@../../../images/Naked Mole-Rat Burrow Shop.png" />
                             </image>
                         </ImageView>
 
-                        <Label fx:id="shopGoldLabel" text="Gold: 100"
-                               style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                        <Label fx:id="shopGoldLabel" style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="Gold: 100" />
 
-                        <Label fx:id="shopItemDescriptionLabel" maxWidth="500"
-                               text="          Arrows can be used to pre-attack enemys" wrapText="true"
-                               style="-fx-text-fill: white;"/>
+                        <Label fx:id="shopItemDescriptionLabel" alignment="CENTER" maxWidth="500" style="-fx-text-fill: white;" text="          Arrows can be used to pre-attack enemys" wrapText="true" />
 
                     </VBox>
                 </top>
@@ -259,53 +222,41 @@
                 <center>
                     <HBox alignment="TOP_CENTER" spacing="18">
 
-                        <VBox spacing="10" HBox.hgrow="ALWAYS"
-                              style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 14;">
-                            <Label text="WEAPONS"
-                                   style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                        <VBox spacing="10" style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 14;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="WEAPONS" />
 
                             <ListView fx:id="shopItemsListView1" prefHeight="220" VBox.vgrow="ALWAYS">
                                 <placeholder>
-                                    <Label fx:id="weaponslst" text="Available weapons"/>
+                                    <Label fx:id="weaponslst" text="Available weapons" />
                                 </placeholder>
                             </ListView>
 
-                            <Button fx:id="confirmPurchaseButton1" maxWidth="Infinity"
-                                    onAction="#onConfirmPurchasew" prefHeight="38"
-                                    text="Confirm Weapon Purchase"
-                                    style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                            <Button fx:id="confirmPurchaseButton1" maxWidth="Infinity" onAction="#onConfirmPurchasew" prefHeight="38" style="-fx-background-color: #987443; -fx-text-fill: white; -fx-font-weight: bold;" text="Confirm Weapon Purchase" />
                         </VBox>
 
-                        <VBox spacing="10" HBox.hgrow="ALWAYS"
-                              style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 14;">
-                            <Label text="ITEMS"
-                                   style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                        <VBox spacing="10" style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 14;" HBox.hgrow="ALWAYS">
+                            <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="ITEMS" />
 
                             <ListView fx:id="shopItemsListView" prefHeight="220" VBox.vgrow="ALWAYS">
                                 <placeholder>
-                                    <Label text="Available items"/>
+                                    <Label text="Available items" />
                                 </placeholder>
                             </ListView>
 
-                            <Button fx:id="confirmPurchaseButton" maxWidth="Infinity"
-                                    onAction="#onConfirmPurchase" prefHeight="38"
-                                    text="Confirm Item Purchase"
-                                    style="-fx-background-color: #496d65; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                            <Button fx:id="confirmPurchaseButton" maxWidth="Infinity" onAction="#onConfirmPurchase" prefHeight="38" style="-fx-background-color: #496d65; -fx-text-fill: white; -fx-font-weight: bold;" text="Confirm Item Purchase" />
                         </VBox>
 
                     </HBox>
                 </center>
 
                 <bottom>
-                    <VBox spacing="8"
-                          style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 12;">
+                    <VBox spacing="8" style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 12;">
 
-                        <Label text="YOUR INVENTORY"
-                               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="YOUR INVENTORY" />
 
                         <ListView fx:id="ownedItemsListView" prefHeight="105">
                             <placeholder>
-                                <Label text="Items you own"/>
+                                <Label text="Items you own" />
                             </placeholder>
                         </ListView>
 
@@ -318,18 +269,17 @@
         <Tab fx:id="mtab" text="Map">
             <BorderPane style="-fx-background-color: #202a28;">
                 <padding>
-                    <Insets top="16" right="16" bottom="16" left="16"/>
+                    <Insets bottom="16" left="16" right="16" top="16" />
                 </padding>
 
                 <center>
                     <VBox alignment="CENTER" spacing="10">
 
-                        <Label text="UNDERGROUND WORLD MAP"
-                               style="-fx-font-size: 23px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                        <Label style="-fx-font-size: 23px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="UNDERGROUND WORLD MAP" />
 
                         <ImageView fitHeight="390" fitWidth="1050" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/map.png"/>
+                                <Image url="@../../../images/map.png" />
                             </image>
                         </ImageView>
 
@@ -337,39 +287,31 @@
                 </center>
 
                 <bottom>
-                    <HBox spacing="16" prefHeight="230">
+                    <HBox prefHeight="230" spacing="16">
 
-                        <VBox prefWidth="390" spacing="10" HBox.hgrow="ALWAYS"
-                              style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 14;">
+                        <VBox prefWidth="390" spacing="10" style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 14;" HBox.hgrow="ALWAYS">
 
-                            <Label text="📍 DESTINATIONS"
-                                   style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                            <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="📍 DESTINATIONS" />
 
                             <ListView fx:id="locationsListView" VBox.vgrow="ALWAYS">
                                 <placeholder>
-                                    <Label text="Available locations"/>
+                                    <Label text="Available locations" />
                                 </placeholder>
                             </ListView>
 
-                            <Button fx:id="confirmDestinationButton" maxWidth="Infinity"
-                                    onAction="#onConfirmDestination" text="Confirm Destination"
-                                    style="-fx-background-color: #b18a4c; -fx-text-fill: #18201f; -fx-font-weight: bold;"/>
+                            <Button fx:id="confirmDestinationButton" maxWidth="Infinity" onAction="#onConfirmDestination" style="-fx-background-color: #b18a4c; -fx-text-fill: #18201f; -fx-font-weight: bold;" text="Confirm Destination" />
 
                         </VBox>
 
-                        <VBox prefWidth="390" spacing="10" HBox.hgrow="ALWAYS"
-                              style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 14;">
+                        <VBox prefWidth="390" spacing="10" style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 14;" HBox.hgrow="ALWAYS">
 
-                            <Label text="INVENTORY / LOCATION DETAILS"
-                                   style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;"/>
+                            <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="INVENTORY / LOCATION DETAILS" />
 
-                            <Label fx:id="locationDetailsLabel"
-                                   text="If you have an arrow in your inventory you will automatically deal 5 damage to the opponent"
-                                   wrapText="true" style="-fx-text-fill: white;"/>
+                            <Label fx:id="locationDetailsLabel" style="-fx-text-fill: white;" text="If you have an arrow in your inventory you will automatically deal 5 damage to the opponent" wrapText="true" />
 
                             <ListView fx:id="visitedLocationsListView" VBox.vgrow="ALWAYS">
                                 <placeholder>
-                                    <Label text="Inventory"/>
+                                    <Label text="Inventory" />
                                 </placeholder>
                             </ListView>
 
@@ -383,13 +325,11 @@
         <!-- YOU LOSE -->
         <Tab fx:id="ltap" text="you lose">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
-                            style="-fx-background-color: #171b1b;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #171b1b;">
                     <children>
-                        <ImageView fitHeight="747.0" fitWidth="806.0" layoutX="4.0" layoutY="128.0"
-                                   pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="747.0" fitWidth="806.0" layoutX="4.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/Defeated Mole-Rat_ You Lose!.png"/>
+                                <Image url="@../../../images/Defeated Mole-Rat_ You Lose!.png" />
                             </image>
                         </ImageView>
                     </children>
@@ -400,13 +340,11 @@
         <!-- YOU WIN -->
         <Tab fx:id="wtap" text="you win">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
-                            style="-fx-background-color: #171b1b;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #171b1b;">
                     <children>
-                        <ImageView fitHeight="719.0" fitWidth="789.0" layoutX="14.0" layoutY="14.0"
-                                   pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="719.0" fitWidth="789.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../images/Crowned Mole-Rat Victory Underground.png"/>
+                                <Image url="@../../../images/Crowned Mole-Rat Victory Underground.png" />
                             </image>
                         </ImageView>
                     </children>

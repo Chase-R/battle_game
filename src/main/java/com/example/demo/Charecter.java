@@ -10,6 +10,7 @@ public class Charecter {
     private int defense;
     private int tubers = 0;
     private int magicp = 5;
+    private int maxmp =10;
     private int speed = 10-randnum(1,10);
     private double criticalchance = (double) (10 - speed) /10;
     private Weapons weapon;
@@ -141,6 +142,19 @@ public class Charecter {
         return magicp;
     }
 
+    public int usemp(int use){
+        if(use <= maxmp){
+            magicp-=use;
+        }
+        return magicp;
+    }
+    public int gainmp(int use){
+        if(compmpmax(use)){
+            magicp+=use;
+        }
+        return magicp;
+    }
+
     public void setMagicp(int magicp) {
         this.magicp = magicp;
     }
@@ -172,12 +186,28 @@ public class Charecter {
         if (temp != null && temp.getUses() > 0){
 
             health += selectedItem.getHeal();
+            maxmp += selectedItem.getMagic();
 
             temp.Use();
 
             return true;
         }
 
+        return false;
+    }
+
+    public int getMaxmp() {
+        return maxmp;
+    }
+
+    public void setMaxmp(int maxmp) {
+        this.maxmp = maxmp;
+    }
+
+    private boolean compmpmax( int add){
+        if(magicp+ add <=maxmp){
+            return true;
+        }
         return false;
     }
 }

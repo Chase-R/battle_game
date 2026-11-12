@@ -7,20 +7,23 @@ public class Items {
     private int attack;
     private int price;
     private int heal;
+    private int maxmp;
+
     private int uses = 1;
 
-    public Items(String name, int attack, int price, int heal) {
+    public Items(String name, int attack, int price, int heal, int magic) {
         this.name = name;
         this.attack = attack;
         this.price = price;
         this.heal = heal;
+        this.maxmp = magic;
     }
 
     public String getall(){
-        return name + " attack: "+attack+" heal: "+heal;
+        return name + " attack: "+attack+" heal: "+heal+" Max magic inc: "+maxmp;
     }
     public String getwithpiceall(){
-        return name + " attack: "+attack+" price: "+price+" heal: "+heal;
+        return name + " attack: "+attack+" price: "+price+" heal: "+heal+" Max magic inc: "+maxmp;
     }
 
 
@@ -48,5 +51,9 @@ public class Items {
 
     public void Use() {
         uses--;
+    }
+
+    public int getMagic() {
+        return maxmp;
     }
 }

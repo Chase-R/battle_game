@@ -8,6 +8,7 @@ public class Enemy {
     private int attack;
     private int defense;
     private int speed;
+    private int magicp = 5;
     private double criticalchance = 0.10;
     private ArrayList<IndividualItemsOwned> items = new ArrayList<>();
 
@@ -50,4 +51,11 @@ public class Enemy {
     }
 
 
+    public int getMagicp() {
+        return magicp;
+    }
+
+    public void setMagicp(int magicp) {
+        this.magicp = magicp;
+    }
 }

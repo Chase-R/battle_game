@@ -1,4 +1,5 @@
-//,
+//finish magic for player and give enemy magoc abilities
+//make video using https://obsproject.com/ max 5 mins
 package com.example.demo;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,6 +13,22 @@ import java.lang.reflect.Array;
 import java.util.Objects;
 
 public class HelloController {
+    public Label enemyMagicLabel;
+    public Label playerMagicLabel1;
+    @FXML
+    private Label playerMagicLabel;
+
+    @FXML
+    private TextField magicAmountField;
+
+    @FXML
+    private Button magicAttackButton;
+
+    @FXML
+    private Button magicHealButton;
+
+    @FXML
+    private Button magicShieldButton;
     public Tab wtap;
     private String selectedImagePath;
     // Character Selection
@@ -119,6 +136,7 @@ public class HelloController {
 
     @FXML
     public void onConfirmAction(ActionEvent actionEvent) {
+        Manager.getPlayer().gainmp(3);
 
         int selectedIndex = battleItemsListView.getSelectionModel().getSelectedIndex();
 
@@ -257,6 +275,7 @@ public class HelloController {
                 + " for " + damage + " damage!");
         iswon(Manager.checkifwon(selectedEnemy));
         int result = Manager.checkifwon(selectedEnemy);
+        Manager.getPlayer().gainmp(1);
         if(result == 3){
             int edamage = Manager.enemyattack(selectedEnemy);
 
@@ -282,6 +301,8 @@ public class HelloController {
 
 
             Manager.getPlayer().addtuber(reward);
+            Manager.getPlayer().gainmp(randnum(1,5));
+
 
             System.out.println("You earned " + reward + " tubers!");
             System.out.println("Total tubers: " + Manager.getPlayer().getTubers());
@@ -311,7 +332,9 @@ public class HelloController {
     }
 
 
-    public void updateAttackscreen(){
+    public void updateAttackscreen() {
+
+        // Get enemy index
         int enemyIndex = Manager.getEnemies().indexOf(selectedEnemy);
 
         String enemyImagePath = "";
@@ -332,38 +355,74 @@ public class HelloController {
                         getClass().getResourceAsStream(enemyImagePath)
                 ))
         );
+
         playerImage.setImage(
-                new Image(Objects.requireNonNull(getClass().getResourceAsStream(
-                        Manager.getPlayer().getImagePath()
-                )))
+                new Image(Objects.requireNonNull(
+                        getClass().getResourceAsStream(
+                                Manager.getPlayer().getImagePath()
+                        )
+                ))
         );
-        // Health
+
+        // Clear battle items
         battleItemsListView.getItems().clear();
-        enemyHealthLabel.setText(String.valueOf(selectedEnemy.getHealth()));
-        playerHealthLabel.setText(String.valueOf(Manager.getPlayer().getHealth()));
 
-        playerDescriptionLabel.setText(" Attack: " + Manager.getPlayer().getAttack() + " Defense: " + Manager.getPlayer().getDefense() + " Speed: " + Manager.getPlayer().getSpeed() + " Critical Chance: " + (Manager.getPlayer().getCriticalchance() * 100) + "%");
+        Charecter player = Manager.getPlayer();
 
-        enemyname.setText(selectedEnemy.getName());
+        playerHealthLabel.setText(
+                "Health: " + player.getHealth()
+        );
 
-        enemyDescriptionLabel.setText(" Attack: " + selectedEnemy.getAttack() + " Defense: " + selectedEnemy.getDefense() + " Speed: " + selectedEnemy.getSpeed() + " Critical Chance: " + (selectedEnemy.getCriticalchance() * 100) + "%");
+        playerMagicLabel.setText(
+                "Magic: " + player.getMagicp() + " MP"
+        );
+        playerMagicLabel1.setText("Max Magic: "+player.getMaxmp()+"MP");
 
-        if (Manager.getPlayer().getWeapon() != null) {
+        playerDescriptionLabel.setText(
+                "⚔ Attack: " + player.getAttack()
+                        + "Defense: " + player.getDefense()
+                        + "Speed: " + player.getSpeed()
+                        + "Critical Chance: "
+                        + (player.getCriticalchance() * 100) + "%"
+        );
+
+        // PLAYER WEAPON
+        if (player.getWeapon() != null) {
+
             playerDescriptionLabel.setText(
-                    playerDescriptionLabel.getText() + " Weapon: " + Manager.getPlayer().getWeapon().getName() + " Weapon Damage: " + Manager.getPlayer().getWeapon().getDamage() + " Weapon Special: " + Manager.getPlayer().getWeapon().getSpecial());
+                    playerDescriptionLabel.getText()
+                            + "Weapon: " + player.getWeapon().getName()
+                            + "Damage: " + player.getWeapon().getDamage()
+                            + "Special: " + player.getWeapon().getSpecial()
+            );
+
         } else {
+
             playerDescriptionLabel.setText(
-                    playerDescriptionLabel.getText() + "Weapon: None"
+                    playerDescriptionLabel.getText()
+                            + "Weapon: None"
             );
         }
 
-        battleItemsListView.getItems().clear();
+        enemyname.setText(selectedEnemy.getName());
 
-        for (IndividualItemsOwned items : Manager.getPlayer().getItems()) {
+        enemyHealthLabel.setText(
+                "Health: " + selectedEnemy.getHealth()
+        );
+        enemyMagicLabel.setText("Magic: " + selectedEnemy.getMagicp() + " MP");
+
+        enemyDescriptionLabel.setText(
+                "⚔ Attack: " + selectedEnemy.getAttack()
+                        + "Defense: " + selectedEnemy.getDefense()
+                        + "Speed: " + selectedEnemy.getSpeed()
+                        + "Critical Chance: "
+                        + (selectedEnemy.getCriticalchance() * 100) + "%"
+        );
+
+        // DISPLAY OWNED ITEMS
+        for (IndividualItemsOwned items : player.getItems()) {
             battleItemsListView.getItems().add(items.getall());
         }
-
-
     }
 
     public void backToMap(ActionEvent actionEvent) {
@@ -405,6 +464,7 @@ public class HelloController {
         int selectedIndex= shopItemsListView1.getSelectionModel().getSelectedIndex();
 
         Weapons slectedpurchse = Manager.getStoreweapons().get(selectedIndex);
+
         Manager.itembuyw(slectedpurchse);
         updateShopScreen();
     }
@@ -417,6 +477,7 @@ public class HelloController {
 
     public void special(ActionEvent actionEvent) {
         String result = Manager.useWeaponSpecial(selectedEnemy);
+        Manager.getPlayer().gainmp(5);
 
         addBattleLog(result);
 
@@ -460,6 +521,15 @@ public class HelloController {
 
         selectedImagePath = imagePath;
         System.out.println("Selected: " + selectedImagePath);
+    }
+
+    public void selectMagicShield(ActionEvent actionEvent) {
+    }
+
+    public void selectMagicHeal(ActionEvent actionEvent) {
+    }
+
+    public void selectMagicAttack(ActionEvent actionEvent) {
     }
 }
 

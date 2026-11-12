@@ -1,5 +1,5 @@
 package com.example.demo;
-//github
+//https://obsproject.com/
 
 import java.util.ArrayList;
 
@@ -25,14 +25,19 @@ public class Manager {
         enemies.add(new Enemy("Royal Guard", randnum(12,13), 9, randnum(45,55), randnum(6,9)));
         enemies.add(new Enemy("Queen's Champion", randnum(15,16), 12, randnum(58,72), randnum(7,10)));
         enemies.add(new Enemy("The Queen", randnum(20,22), 16, randnum(90,110), randnum(8,10)));
-        storeitems.add(new Items("Small Tuber", 0,  randnum(13,17), randnum(4,6)));
-        storeitems.add(new Items("Sharpened Incisors", randnum(4,6), randnum(23,27), 0));
-        storeitems.add(new Items("Thick Hide", 0,  randnum(23,27), 0));
-        storeitems.add(new Items("Juicy Root", 0,  randnum(37,43), randnum(9,11)));
-        storeitems.add(new Items("Battle Tuber", randnum(4,6),  randnum(60,70), 0));
-        storeitems.add(new Items("Golden Tuber", 0, randnum(70,80), randnum(18,22)));
-        storeitems.add(new Items("Royal Warpaint", randnum(9,11),  randnum(95,105), 0));
-        storeitems.add(new Items("Queen's Nectar", 0,  randnum(120,130), randnum(32,38)));
+        storeitems.add(new Items("Small Tuber", 0,  randnum(13,17), randnum(4,6),0));
+        storeitems.add(new Items("Sharpened Incisors", randnum(4,6), randnum(23,27), 0,0));
+        storeitems.add(new Items("Thick Hide", 0,  randnum(23,27), 0,0));
+        storeitems.add(new Items("Juicy Root", 0,  randnum(37,43), randnum(9,11),0));
+        storeitems.add(new Items("Battle Tuber", randnum(4,6),  randnum(60,70), 0,0));
+        storeitems.add(new Items("Golden Tuber", 0, randnum(70,80), randnum(18,22),0));
+        storeitems.add(new Items("Royal Warpaint", randnum(9,11),  randnum(95,105), 0,0));
+        storeitems.add(new Items("Queen's Nectar", 0,  randnum(120,130), randnum(32,38),0));
+        storeitems.add(new Items("Small Magic Crystal", 0, randnum(8,12), 0, 3));
+        storeitems.add(new Items("Charged Crystal", 0, randnum(18,22), 0, 5));
+        storeitems.add(new Items("Ancient Crystal", 0, randnum(30,40), 0, 8));
+        storeitems.add(new Items("Royal Magic Core", 0, randnum(50,60), 0, 12));
+        storeitems.add(new Items("Queen's Heartstone", 0, randnum(75,85), 0, 15));
         storeweapons.add(new Weapons("Pebble", randnum(13,17), randnum(2,4)));
         storeweapons.add(new Weapons("Sharp Incisor", randnum(27,33), randnum(4,6)));
         storeweapons.add(new Weapons("Bone Dagger", randnum(45,55), randnum(6,8)));
@@ -40,7 +45,7 @@ public class Manager {
         storeweapons.add(new Weapons("Crystal Spear", randnum(105,115), randnum(12,14)));
         storeweapons.add(new Weapons("Royal Fang", randnum(150,170), randnum(16,18)));
         storeweapons.add(new Weapons("Queen's Scepter", randnum(240,260), randnum(21,23)));
-        storeitems.add(new Items("Arrow", 5,  randnum(5,10), 0));
+        storeitems.add(new Items("Arrow", 5,  randnum(5,10), 0,0));
 
     }
     public void resetSpecial() {
