@@ -12,11 +12,10 @@ public class Manager {
     private ArrayList<Items> storeitems = new ArrayList<>();
     private boolean specialUsed = false;
 
-//,
 
 
     public Manager(){
-        //chat creted the itms and enemys
+        //chat creted the enemys
         enemies.add(new Enemy("Tunnel Scout", randnum(3,4), 2, randnum(10,14), randnum(2,5)));
         enemies.add(new Enemy("Tuber Thief", randnum(4,5), 3, randnum(14,18), randnum(3,6)));
         enemies.add(new Enemy("Colony Defender", randnum(5,6), 4, randnum(19,25), randnum(3,7)));
@@ -88,7 +87,7 @@ public class Manager {
 
         return "No special available!";
     }
-    //the attack and enemy attack functins equation came from chat with prompting from what i wanted
+    //the attack and enemy attack equation came from chat with prompting from what i wanted
 
     public String magicAttack(Enemy opponent, int mp){
         player.usemp(mp);
@@ -311,7 +310,7 @@ public class Manager {
             storeweapons.add(new Weapons("Champion's Claw", randnum(200,220), randnum(18,20)));
             return "You leveled up! stats increased are: health + 10 " + "attack + 1 " + "defense + 1 " + "Magic points + 5 " + "Max Magic points +=5 ";
         }
-        return null;
+        return "";
 
     }
     private void enemyShop(Enemy enemy) {

@@ -1,5 +1,4 @@
 package com.example.demo;
-//gothub//,
 import java.util.ArrayList;
 
 public class Enemy {

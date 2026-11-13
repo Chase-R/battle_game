@@ -1,6 +1,4 @@
-//finish magic for player and give enemy magoc abilities
 //make video using https://obsproject.com/ max 5 mins
-//the battle log chats the things that are physcially displyed are madew with chat sio that spelling and it looks nicw
 package com.example.demo;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,20 +20,11 @@ public class HelloController {
     @FXML
     private TextField magicAmountField;
 
-    @FXML
-    private Button magicAttackButton;
+
 
     @FXML
-    private Button magicHealButton;
-
-    @FXML
-    private Button magicShieldButton;
     public Tab wtap;
     private String selectedImagePath;
-    // Character Selection
-    public ListView characterImage;
-    public Label characterDescription;
-    public Button confirmCharacterButton;
     public Tab ctab;
     public Tab btab;
     public Tab stab;
@@ -47,23 +36,19 @@ public class HelloController {
     public Button ib3;
     public Button ib4;
     int reward;
-    // Battle: Player
     public ImageView playerImage;
     public Label playerHealthLabel;
     public Label playerDescriptionLabel;
 
-    // Battle: Enemy
     public ImageView enemyImage;
     public Label enemyHealthLabel;
     public Label enemyDescriptionLabel;
 
-    // Battle Lists
     public ListView battleItemsListView;
     public ListView battleLogListView;
 
     public Button confirmActionButton;
 
-    // Shop
     public ImageView shopItemImage;
     public Label shopGoldLabel;
     public Label shopItemNameLabel;
@@ -73,15 +58,11 @@ public class HelloController {
     public ListView ownedItemsListView;
     public Button confirmPurchaseButton;
 
-    // Map
-    public ImageView worldMapImage;
     public ListView locationsListView;
     public ListView visitedLocationsListView;
     public Label locationDetailsLabel;
     public Button confirmDestinationButton;
 
-    // General Status
-    public Label gameStatusLabel;
     public Label attacklbl;
     public Label defenselbl;
     public TextField nametxt;
@@ -193,7 +174,7 @@ public class HelloController {
                 Manager.resetSpecial();
                 battleLogListView.getItems().clear();
 
-                addBattleLog("⚔️ Battle started!");
+                addBattleLog(" Battle started!");
                 addBattleLog("Your opponent is " + selectedEnemy.getName() + ".");
                 weaponSpecialButton.setDisable(false);
 
@@ -211,7 +192,7 @@ public class HelloController {
             updateShopScreen();
         }
         if (Manager.useArrow(selectedEnemy)) {
-            addBattleLog("🏹 You used an Arrow!");
+            addBattleLog(" You used an Arrow!");
             addBattleLog("Your Arrow dealt 5 damage!");
         }
 
@@ -221,21 +202,12 @@ public class HelloController {
 
     }
 
-//    public void addchoice(){
-//        characterImage.getItems().clear();
-//        for (Charecter charecter : Manager.getChoice()){
-//
-//            characterImage.getItems().add(charecter.getName() +" attack "+charecter.getAttack()+" defense "+ charecter.getDefense());
-//
-//        }
-//    }
 
     public void AddAttack(ActionEvent actionEvent) {
         if(setattack >=5 && setdefense >1){
             setattack+=1;
             setdefense-=1;
         }
-//yes
 
         updatecharecterscreen();
     }
@@ -299,7 +271,8 @@ public class HelloController {
             BTMbtn.setVisible(true);
             addBattleLog(" You defeated " + selectedEnemy.getName() + "!");
             reward = 0;
-            Manager.unlockItems(selectedIndex);
+            addBattleLog(Manager.unlockItems(selectedIndex));
+
             if(selectedEnemy.getName().equals("The Queen")){
                 tabPane.getTabs().clear();
                 tabPane.getTabs().add(wtap);
@@ -321,10 +294,9 @@ public class HelloController {
         }
     }
 
-
+//chat helped to get enemy imgae on screen
     public void updateAttackscreen() {
 
-        // Get enemy index
         int enemyIndex = Manager.getEnemies().indexOf(selectedEnemy);
 
         String enemyImagePath = "";
@@ -354,7 +326,6 @@ public class HelloController {
                 ))
         );
 
-        // Clear battle items
         battleItemsListView.getItems().clear();
 
         Charecter player = Manager.getPlayer();
@@ -376,7 +347,6 @@ public class HelloController {
                         + (player.getCriticalchance() * 100) + "%"
         );
 
-        // PLAYER WEAPON
         if (player.getWeapon() != null) {
 
             playerDescriptionLabel.setText(
@@ -409,7 +379,6 @@ public class HelloController {
                         + (selectedEnemy.getCriticalchance() * 100) + "%"
         );
 
-        // DISPLAY OWNED ITEMS
         for (IndividualItemsOwned items : player.getItems()) {
             battleItemsListView.getItems().add(items.getall());
         }

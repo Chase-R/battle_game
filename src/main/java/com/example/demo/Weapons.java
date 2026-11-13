@@ -1,5 +1,4 @@
 package com.example.demo;
-//,
 
 public class Weapons {
     private String name;

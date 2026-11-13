@@ -1,5 +1,4 @@
 package com.example.demo;
-//github//,
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
