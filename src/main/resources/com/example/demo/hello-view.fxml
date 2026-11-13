@@ -151,7 +151,7 @@
                 </center>
 
                 <right>
-                    <VBox prefWidth="235" spacing="8" style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 16;">
+                    <VBox prefHeight="809.0" prefWidth="435.0" spacing="8" style="-fx-background-color: #2b3834; -fx-background-radius: 12; -fx-padding: 16;">
 
                         <Label style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e6c27a;" text="⚔️ BATTLE ACTIONS" />
 
