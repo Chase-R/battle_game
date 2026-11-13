@@ -46,6 +46,9 @@ public class Manager {
         storeweapons.add(new Weapons("Royal Fang", randnum(150,170), randnum(16,18)));
         storeweapons.add(new Weapons("Queen's Scepter", randnum(240,260), randnum(21,23)));
         storeitems.add(new Items("Arrow", 5,  randnum(5,10), 0,0));
+        for (Enemy e : enemies) {
+            enemyShop(e);
+        }
 
     }
     public void resetSpecial() {
@@ -136,7 +139,35 @@ public class Manager {
         System.out.println("Damage: " + damage);
         return damage;
     }
-    public int enemyattack(Enemy opponent) {
+    public String enemyattack(Enemy opponent) {
+        opponent.gainmp(2);
+        int mp = opponent.getMagicp();
+        if(mp>=2 && mp*3>=player.getHealth()+player.getSheild()){
+            opponent.useMp(mp);
+            player.takedamage(mp*2);
+            return opponent.getName() + " unleashed a magic blast for " + (mp * 3) + " damage!";
+
+
+
+        }
+        if (opponent.getHealth() < opponent.getMaxHealth() * 0.4 && mp >= 3) {
+
+            opponent.useMp(mp);
+            opponent.heal(mp * 3);
+            return opponent.getName() + " used magic heal and recovered " + (mp*3) + " health!";
+        }
+        if(mp>=6){
+            opponent.useMp(mp);
+            player.takedamage(mp*3);
+            return opponent.getName() + " cast a magic blast for " + (mp * 3) + " damage!";
+
+        }
+        String itemMsg = enemyUseItem(opponent);
+        if(itemMsg != null){
+            String prefix = itemMsg + " " ;
+        }
+
+
 
         double attackMultiplier = 1 + (0.03 * opponent.getSpeed());
         double defenseMultiplier = 1 + (0.05 * player.getDefense());
@@ -157,12 +188,10 @@ public class Manager {
 
         player.takedamage(damage);
 
-        System.out.println(critical ? "ENEMY CRITICAL HIT!" : "Enemy normal hit!");
-        System.out.println("Damage received: " + damage);
-        return damage;
+        return prefix + opponent.getName() + " attacked you for " + damage + " damage!";
     }
 
-//yes
+
     public Charecter getPlayer() {
         return player;
     }
@@ -261,6 +290,44 @@ public class Manager {
         }
 
         return false;
+    }
+    public void unlockItems(int enemyIndex) {
+        if (enemyIndex == 1) storeitems.add(new Items("Spiced Tuber", 0, randnum(30,35), randnum(14,16), 0));
+        if (enemyIndex == 3) storeitems.add(new Items("Rat Tonic", 0, randnum(55,65), randnum(25,30), 4));
+        if (enemyIndex == 5) storeitems.add(new Items("Grand Feast", 0, randnum(100,110), randnum(50,60), 8));
+        if (enemyIndex == 6) storeweapons.add(new Weapons("Champion's Claw", randnum(200,220), randnum(18,20)));
+    }
+    private void enemyShop(Enemy enemy) {
+        int budget = enemy.getHealth() * 2;
+        int bought = 0;
+        for (int i = storeitems.size() - 1; i >= 0 && bought < 3; i--) {
+            Items item = storeitems.get(i);
+            boolean useful = item.getHeal() > 0 || item.getAttack() > 0;
+            if (useful && !item.getName().equals("Arrow") && item.getPrice() <= budget) {
+                enemy.getItems().add(new IndividualItemsOwned(item, 1));
+                budget -= item.getPrice();
+                bought++;
+            }
+        }
+    }
+
+    private String enemyUseItem(Enemy enemy) {
+        for (IndividualItemsOwned owned : enemy.getItems()) {
+            Items item = owned.getItem();
+
+            if (item.getHeal() > 0 && enemy.getHealth() < enemy.getMaxHealth() * 0.5) {
+
+                enemy.heal(item.getHeal());
+                owned.Use();
+                return enemy.getName() + " used " + item.getName() + " and now has" + (enemy.getHealth()) + " health!";
+            }
+            if (item.getHeal() == 0 && item.getAttack() > 0 && Math.random() < 0.3) {
+                player.takedamage(item.getAttack());
+                owned.Use();
+                return enemy.getName() + " threw " + item.getName() + " for " + item.getAttack() + " damage!";
+            }
+        }
+        return null;
     }
 
 

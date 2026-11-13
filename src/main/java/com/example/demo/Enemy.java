@@ -3,6 +3,8 @@ package com.example.demo;
 import java.util.ArrayList;
 
 public class Enemy {
+    private final int maxHealth;
+    private final int maxmp;
     private String name;
     private int health;
     private int attack;
@@ -12,12 +14,16 @@ public class Enemy {
     private double criticalchance = 0.10;
     private ArrayList<IndividualItemsOwned> items = new ArrayList<>();
 
+
     public Enemy(String name, int attack, int defense, int health, int speed){
         this.attack=attack;
         this.defense = defense;
         this.name = name;
         this.health = health;
         this.speed = speed;
+        this.maxHealth = health;
+        this.maxmp = 3 + health / 10; 
+        this.magicp = maxmp / 2;
     }
     public void takeDamage(int damage){
         health-=damage;
@@ -57,5 +63,22 @@ public class Enemy {
 
     public void setMagicp(int magicp) {
         this.magicp = magicp;
+    }
+    public int getMaxHealth() { return maxHealth; }
+
+    public void gainmp(int amount) {
+        magicp = Math.min(magicp + amount, maxmp);
+    }
+
+    public boolean useMp(int amount) {
+        if (amount > 0 && amount <= magicp) {
+            magicp -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public void heal(int amount) {
+        health = Math.min(health + amount, maxHealth);
     }
 }

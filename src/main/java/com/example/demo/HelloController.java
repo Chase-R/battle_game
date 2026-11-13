@@ -1,5 +1,6 @@
 //finish magic for player and give enemy magoc abilities
 //make video using https://obsproject.com/ max 5 mins
+//the battle log chats the things that are physcially displyed are madew with chat sio that spelling and it looks nicw
 package com.example.demo;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -98,6 +99,7 @@ public class HelloController {
     public boolean beenshop = false;
     boolean[] boolArray = new boolean[8];
     public Weapons selectedweapon;
+    int selectedIndex =0;
 
     @FXML
     public void initialize() {
@@ -176,7 +178,7 @@ public class HelloController {
     @FXML
     public void onConfirmDestination(ActionEvent actionEvent) {
         Manager.getPlayer().resetSheild();
-        int selectedIndex= locationsListView.getSelectionModel().getSelectedIndex();
+        selectedIndex= locationsListView.getSelectionModel().getSelectedIndex();
         if(selectedIndex < 8){
             if(boolArray[selectedIndex] == false){
                 tabPane.getTabs().clear();
@@ -297,6 +299,7 @@ public class HelloController {
             BTMbtn.setVisible(true);
             addBattleLog(" You defeated " + selectedEnemy.getName() + "!");
             reward = 0;
+            Manager.unlockItems(selectedIndex);
             if(selectedEnemy.getName().equals("The Queen")){
                 tabPane.getTabs().clear();
                 tabPane.getTabs().add(wtap);
@@ -537,10 +540,7 @@ public class HelloController {
     public void enemyTurn(){
         int result = Manager.checkifwon(selectedEnemy);
         if (result == 3){
-            int edamage = Manager.enemyattack(selectedEnemy);
-            addBattleLog(selectedEnemy.getName() + " attacked you for " + edamage + " damage!");
-
-            result = Manager.checkifwon(selectedEnemy);
+            addBattleLog(Manager.enemyattack(selectedEnemy));
         }
         iswon(result);
     }
