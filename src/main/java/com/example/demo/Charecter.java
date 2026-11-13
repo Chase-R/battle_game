@@ -16,6 +16,7 @@ public class Charecter {
     private Weapons weapon;
     private ArrayList<IndividualItemsOwned> items = new ArrayList<>();
     private String imagePath;
+    private int sheild = 0;
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
@@ -63,8 +64,16 @@ public class Charecter {
         return items;
     }
 
-    public void takedamage(int damage){
-        health-=damage;
+    public int takedamage(int damage){
+        int absorbed = Math.min(sheild, damage);
+        sheild -= absorbed;
+        health -= (damage - absorbed);
+        return absorbed;
+    }
+
+    public int gainmp(int amount){
+        magicp = Math.min(magicp + amount, maxmp);
+        return magicp;
     }
 
     public Weapons getWeapon() {
@@ -142,18 +151,15 @@ public class Charecter {
         return magicp;
     }
 
-    public int usemp(int use){
-        if(use <= maxmp){
-            magicp-=use;
+    public boolean usemp(int use){
+        if (use > 0 && use <= magicp){
+            magicp -= use;
+            return true;
         }
-        return magicp;
+        return false;
     }
-    public int gainmp(int use){
-        if(compmpmax(use)){
-            magicp+=use;
-        }
-        return magicp;
-    }
+
+
 
     public void setMagicp(int magicp) {
         this.magicp = magicp;
@@ -209,5 +215,20 @@ public class Charecter {
             return true;
         }
         return false;
+    }
+
+    public int getSheild() {
+        return sheild;
+    }
+
+    public void resetSheild(){
+        sheild=0;
+    }
+    public void usesheils( int use){
+        sheild += use;
+    }
+
+    public void setSheild(int sheild) {
+        this.sheild = sheild;
     }
 }

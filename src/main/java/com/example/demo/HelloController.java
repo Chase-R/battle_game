@@ -175,6 +175,7 @@ public class HelloController {
 
     @FXML
     public void onConfirmDestination(ActionEvent actionEvent) {
+        Manager.getPlayer().resetSheild();
         int selectedIndex= locationsListView.getSelectionModel().getSelectedIndex();
         if(selectedIndex < 8){
             if(boolArray[selectedIndex] == false){
@@ -271,23 +272,9 @@ public class HelloController {
 
     public void handleAttack(ActionEvent actionEvent) {
         int damage = Manager.attack(selectedEnemy);
-        addBattleLog("You attacked " + selectedEnemy.getName()
-                + " for " + damage + " damage!");
-        iswon(Manager.checkifwon(selectedEnemy));
-        int result = Manager.checkifwon(selectedEnemy);
+        addBattleLog("You attacked " + selectedEnemy.getName() + " for " + damage + " damage!");
         Manager.getPlayer().gainmp(1);
-        if(result == 3){
-            int edamage = Manager.enemyattack(selectedEnemy);
-
-            addBattleLog(selectedEnemy.getName()
-                    + " attacked you for " + edamage + " damage!");
-            iswon(Manager.checkifwon(selectedEnemy));
-        }else {
-            iswon(result);
-        }
-
-
-
+        enemyTurn();
     }
     public void iswon(int won){
         if (won==2){
@@ -523,14 +510,55 @@ public class HelloController {
         System.out.println("Selected: " + selectedImagePath);
     }
 
-    public void selectMagicShield(ActionEvent actionEvent) {
+    public void selectMagicAttack(ActionEvent actionEvent) {
+        int mp = getMagicAmount();
+        if (mp > 0){
+            addBattleLog(Manager.magicAttack(selectedEnemy, mp));
+            enemyTurn();
+        }
     }
 
     public void selectMagicHeal(ActionEvent actionEvent) {
+        int mp = getMagicAmount();
+        if (mp > 0){
+            addBattleLog(Manager.magicHeal(mp));
+            enemyTurn();
+        }
     }
 
-    public void selectMagicAttack(ActionEvent actionEvent) {
+    public void selectMagicShield(ActionEvent actionEvent) {
+        int mp = getMagicAmount();
+        if (mp > 0){
+            addBattleLog(Manager.magicShield(mp));
+            enemyTurn();
+        }
     }
+
+    public void enemyTurn(){
+        int result = Manager.checkifwon(selectedEnemy);
+        if (result == 3){
+            int edamage = Manager.enemyattack(selectedEnemy);
+            addBattleLog(selectedEnemy.getName() + " attacked you for " + edamage + " damage!");
+
+            result = Manager.checkifwon(selectedEnemy);
+        }
+        iswon(result);
+    }
+
+    public int getMagicAmount(){
+
+            int amount = Integer.parseInt(magicAmountField.getText());
+            if (amount > 0 && amount <= Manager.getPlayer().getMagicp()){
+                return amount;
+            }
+
+        addBattleLog("Enter an MP amount you can afford!");
+        return 0;
+    }
+
+
+
+
 }
 
 

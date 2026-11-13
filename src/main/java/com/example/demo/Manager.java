@@ -87,6 +87,25 @@ public class Manager {
     }
     //the attack and enemy attack functins equation came from chat with prompting from what i wanted
 
+    public String magicAttack(Enemy opponent, int mp){
+        player.usemp(mp);
+        int damage = Math.min(mp*4, opponent.getHealth());
+        opponent.takeDamage(damage);
+        return "Magic blast! You spent " + mp + " MP and dealt " + damage + " damage!";
+    }
+
+    public String magicHeal(int mp){
+        player.usemp(mp);
+        player.heal(mp*4);
+        return "You spent " + mp + " MP and healed " + (mp * 4) + " health!";
+    }
+
+    public String magicShield(int mp){
+        player.usemp(mp);
+        player.usesheils(mp*2);
+        return "You spent " + mp + " MP and gained a " + (mp * 2) + " point shield!";
+    }
+
     public int attack(Enemy opponent) {
         int weaponDamage = 0;
 
