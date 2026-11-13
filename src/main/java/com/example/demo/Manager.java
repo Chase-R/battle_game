@@ -163,8 +163,9 @@ public class Manager {
 
         }
         String itemMsg = enemyUseItem(opponent);
+        String prefix = null;
         if(itemMsg != null){
-            String prefix = itemMsg + " " ;
+            prefix = itemMsg + " " ;
         }
 
 
@@ -272,7 +273,7 @@ public class Manager {
 
     public boolean useItem(Items selectedItem, Enemy selectedEnemy){
 
-        if (selectedItem.getHeal() > 0) {
+        if (selectedItem.getHeal() > 0 || selectedItem.getMagic() > 0) {
             return player.itemUse(selectedItem);
         }
 
@@ -291,11 +292,27 @@ public class Manager {
 
         return false;
     }
-    public void unlockItems(int enemyIndex) {
-        if (enemyIndex == 1) storeitems.add(new Items("Spiced Tuber", 0, randnum(30,35), randnum(14,16), 0));
-        if (enemyIndex == 3) storeitems.add(new Items("Rat Tonic", 0, randnum(55,65), randnum(25,30), 4));
-        if (enemyIndex == 5) storeitems.add(new Items("Grand Feast", 0, randnum(100,110), randnum(50,60), 8));
-        if (enemyIndex == 6) storeweapons.add(new Weapons("Champion's Claw", randnum(200,220), randnum(18,20)));
+    public String unlockItems(int enemyIndex) {
+        if (enemyIndex == 1) {
+            storeitems.add(new Items("Spiced Tuber", 0, randnum(30, 35), randnum(14, 16), 0));
+
+            player.levelup();
+            return "You leveled up! stats increased are: health + 10 " + "attack + 1 " + "defense + 1 " + "Magic points + 5 " + "Max Magic points +=5 ";
+        }
+        if (enemyIndex == 3) {
+            storeitems.add(new Items("Rat Tonic", 0, randnum(55, 65), randnum(25, 30), 4));
+            return "You leveled up! stats increased are: health + 10 " + "attack + 1 " + "defense + 1 " + "Magic points + 5 " + "Max Magic points +=5 ";
+        }
+        if (enemyIndex == 5){
+            storeitems.add(new Items("Grand Feast", 0, randnum(100,110), randnum(50,60), 8));
+            return "You leveled up! stats increased are: health + 10 " + "attack + 1 " + "defense + 1 " + "Magic points + 5 " + "Max Magic points +=5 ";
+        }
+        if (enemyIndex == 6){
+            storeweapons.add(new Weapons("Champion's Claw", randnum(200,220), randnum(18,20)));
+            return "You leveled up! stats increased are: health + 10 " + "attack + 1 " + "defense + 1 " + "Magic points + 5 " + "Max Magic points +=5 ";
+        }
+        return null;
+
     }
     private void enemyShop(Enemy enemy) {
         int budget = enemy.getHealth() * 2;

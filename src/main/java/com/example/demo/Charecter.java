@@ -231,4 +231,12 @@ public class Charecter {
     public void setSheild(int sheild) {
         this.sheild = sheild;
     }
+    public void levelup(){
+         health += 10;
+         attack+=1;
+         defense+=1;
+         magicp += 5;
+         maxmp += 5;
+
+    }
 }
